@@ -6,7 +6,17 @@
     <description>Recent content on Website of Dexter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jan 2021 14:51:57 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 17:55:15 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spring-IOC学习笔记</title>
+      <link>https://yexiang43.github.io/post/blog1/</link>
+      <pubDate>Fri, 22 Jan 2021 17:55:15 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/post/blog1/</guid>
+      <description>Spring 有两个核心部分:IOC 和 Aop
+1.什么是IOC   控制反转（Inversion of Control，缩写为IoC），是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。其中最常见的方式叫做**依赖注入**（Dependency Injection，简称**DI**），还有一种方式叫“依赖查找”（Dependency Lookup）。</description>
+    </item>
+    
     <item>
       <title>IDEA中Maven pom不自动更新依赖问题</title>
       <link>https://yexiang43.github.io/post/b/</link>
