@@ -6,14 +6,26 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jan 2021 14:18:07 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 22 Jan 2021 14:51:57 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>IDEA中Maven pom不自动更新依赖问题</title>
+      <link>https://yexiang43.github.io/post/b/</link>
+      <pubDate>Fri, 22 Jan 2021 14:51:57 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/post/b/</guid>
+      <description>IDEA中Maven pom不自动更新依赖问题 我们导入相关依赖时maven的pom.xml可能会报错
+这是我们只需要点一下更新按钮
+这样就可以了</description>
+    </item>
+    
     <item>
       <title>第一篇hugo博客</title>
       <link>https://yexiang43.github.io/post/blog/</link>
       <pubDate>Fri, 22 Jan 2021 14:18:07 +0800</pubDate>
       
       <guid>https://yexiang43.github.io/post/blog/</guid>
-      <description>创建个人博客很开心</description>
+      <description>创建个人博客很开心
+感谢CodeSheep!!!</description>
     </item>
     
   </channel>
