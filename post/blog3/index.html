@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" data-theme=""><head>
+    <title> Dexter | Blog3 </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="The personal homepage of Dexter">
+    
+    <link rel="stylesheet"
+          href="https://yexiang43.github.io/css/style.min.bb7146835efb4da60bec03e4c446c3a3b94260c78c8bdb82057b37dab9c8768e.css"
+          integrity="sha256-u3FGg177TaYL7APkxEbDo7lCYMeMi9uCBXs32rnIdo4="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="https://yexiang43.github.io/css/markupHighlight.min.9755453ffb7bc4cd220f86ebb5922107b49f193cc62fc17e9785d27b33a8bf5b.css"
+        integrity="sha256-l1VFP/t7xM0iD4brtZIhB7SfGTzGL8F&#43;l4XSezOov1s="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="https://yexiang43.github.io/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://yexiang43.github.io/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://yexiang43.github.io/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://yexiang43.github.io/favicons/favicon-16x16.png">
+
+    <link rel="canonical" href="https://yexiang43.github.io/post/blog3/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="https://yexiang43.github.io/js/anatole-header.min.d8599ee07b7d3f11bafbac30657ccc591e8d7fd36a9f580cd4c09e24e0e4a971.js"
+            integrity="sha256-2Fme4Ht9PxG6&#43;6wwZXzMWR6Nf9Nqn1gM1MCeJODkqXE="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="https://yexiang43.github.io/js/anatole-theme-switcher.min.e289e9ebb2a4e7a7f895859c8a2b0da2de1ec73f22cea58d8475aa0597023837.js"
+                integrity="sha256-4onp67Kk56f4lYWciisNot4exz8izqWNhHWqBZcCODc="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Blog3"/>
+<meta name="twitter:description" content="Vue学习笔记 1.什么是MVVM？ MVVM是Model-View-ViewModel的简写。它本质上就是MVC 的改进版。MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开。当然这些事 ViewModel 已经帮我们做了，它可以取出 Model 的数据同时帮忙处理 View 中由于需要展示内容而涉及的业务逻辑。。MVVM（Model-View-ViewModel）框架的由来便是MVP（Model-View-Presenter）模式与WPF结合的应用方式时发展演变过来的一种新型架构框架。它立足于原有MVP框架并且把WPF的新特性糅合进去，以应对客户日益复杂的需求变化。"/>
+
+</head>
+<body><div class="sidebar animated fadeInDown ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="https://yexiang43.github.io/profile.jpg" alt="profile picture">
+            <h3 title=""><a href="/">I&#39;M Dexter</a></h3>
+            <div class="description">
+                <p>The personal homepage of Dexter</p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+            <li>
+                <a href="mailto:z18595741451@163.com" rel="me" aria-label="e-mail">
+                    <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="" rel="me" aria-label="Linkedin">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://github.com/yexiang43" rel="me" aria-label="GitHub">
+                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="" rel="me" aria-label="instagram">
+                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Dexter  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  animated fadeInDown ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/post/"
+                        
+                   title="">Posts</a></li>
+        
+            
+            <li><a 
+                   href="/about/"
+                        
+                   title="">About</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  animated fadeInDown ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>Blog3</h3>
+                
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> Thu, Feb 4, 2021 
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">4-minute read</span>
+                    </div>
+                
+            </div>
+
+            <h1 id="vue学习笔记">Vue学习笔记</h1>
+<h3 id="1什么是mvvm">1.什么是MVVM？</h3>
+<p>MVVM是<strong>Model-View-ViewModel</strong>的简写。它本质上就是MVC 的<strong>改进版</strong>。MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开。当然这些事 ViewModel 已经帮我们做了，它可以取出 Model 的数据同时帮忙处理 View 中由于需要展示内容而涉及的业务逻辑。。MVVM（Model-View-ViewModel）框架的由来便是MVP（Model-View-Presenter）<a href="https://baike.baidu.com/item/%E6%A8%A1%E5%BC%8F/700029">模式</a>与WPF结合的应用方式时发展演变过来的一种新型架构<a href="https://baike.baidu.com/item/%E6%A1%86%E6%9E%B6/1212667">框架</a>。它立足于原有MVP框架并且把WPF的新特性糅合进去，以应对客户日益复杂的需求变化。</p>
+<h3 id="2为什么使用mvvm">2、为什么使用MVVM？</h3>
+<p>MVVM模式和MVC模式一样，主要目的是分离<a href="https://baike.baidu.com/item/%E8%A7%86%E5%9B%BE">视图</a>（View）和模型（Model），有几大优点</p>
+<p><strong>1. 低耦合</strong>。视图（View）可以独立于Model变化和修改，一个ViewModel可以绑定到不同的&quot;View&quot;上，当View变化的时候Model可以不变，当Model变化的时候View也可以不变。</p>
+<p><strong>2. 可重用性</strong>。你可以把一些视图逻辑放在一个ViewModel里面，让很多view重用这段视图逻辑。</p>
+<p><strong>3. 独立开发</strong>。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用Expression Blend可以很容易设计界面并生成xaml代码。</p>
+<p><strong>4. 可测试</strong>。界面素来是比较难于测试的，测试可以针对ViewModel来写。</p>
+<h3 id="3mvvm的实现者vue什么是vue">3、MVVM的实现者Vue，什么是Vue?</h3>
+<p>Vue (读音 /vjuː/，类似于 <strong>view</strong>) 是一套用于构建用户界面的<strong>渐进式框架</strong>。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</p>
+<h3 id="4vue的优点">4、Vue的优点</h3>
+<p><strong>易用</strong></p>
+<p>在有HTML CSS JavaScript的基础上，快速上手。</p>
+<p><strong>灵活</strong></p>
+<p>简单小巧的核心，渐进式技术栈，足以应付任何规模的应用。</p>
+<p><strong>性能</strong></p>
+<p>20kb min+gzip 运行大小、超快虚拟 DOM、最省心的优化。</p>
+<h3 id="5第一个vue程序">5、第一个Vue程序</h3>
+<p>1、创建普通项目，创建demo01.html</p>
+<p><img src="/image-20210129191519169.png" alt="image-20210129191519169"></p>
+<p>2、导入Vue依赖</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"> <span class="o">&lt;</span><span class="n">script</span> <span class="n">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</code></pre></div><p>3、创建Vue</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"> <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+     <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+       <span class="c1">//绑定div的id
+</span><span class="c1"></span>         <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+       <span class="c1">//数据
+</span><span class="c1"></span>         <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+             <span class="nx">msg</span><span class="o">:</span><span class="s2">&#34;hello,Vue!&#34;</span>
+         <span class="p">}</span>
+     <span class="p">});</span>
+ <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>4、取出Vuedata</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+     {{msg}}
+ <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>5、浏览器看结果</p>
+<p><img src="/image-20210129191949258.png" alt="image-20210129191949258"></p>
+<h3 id="6v-blnd">6、V-Blnd</h3>
+<p>我们已经成功创建了第一个 Vue 应用！看起来这跟渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。我们要怎么确认呢？打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <strong>msg</strong> 的值，你将看到上例相应地更新。</p>
+<p>除了文本插值，我们还可以像这样来绑定元素：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"> <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">span</span> <span class="na">v-bind:title</span><span class="o">=</span><span class="s">&#34;msg&#34;</span><span class="p">&gt;</span>
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+    <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+ <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p><img src="/image-20210129194129594.png" alt="image-20210129194129594"></p>
+<h3 id="7if与for">7、if与for</h3>
+<p>(1)if</p>
+<p>控制切换一个元素是否显示</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app-3&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;msg===A&#34;</span><span class="p">&gt;</span>A<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-else</span><span class="p">&gt;</span>B<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+           <span class="nx">msg</span><span class="o">:</span><span class="nx">A</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>结果</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">A
+</code></pre></div><p>继续在控制台输入 app3.msg = B，之前显示的A会变成B</p>
+<p>（2）for</p>
+<p><code>v-for</code> 指令可以绑定数组的数据来渲染一个项目</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+     <span class="p">&lt;</span><span class="nt">li</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in items&#34;</span><span class="p">&gt;</span>
+         {{item}}
+     <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">items</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;学习 JavaScript&#39;</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;学习 Vue&#39;</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;整个牛项目&#39;</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>结果</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span> <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;学习 JavaScript&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;学习 Vue&#34;</span> <span class="p">}</span>
+<span class="p">{</span> <span class="nt">&#34;text&#34;</span><span class="p">:</span> <span class="s2">&#34;整个牛项目&#34;</span> <span class="p">}</span> 
+</code></pre></div><p>8、绑定事件</p>
+<p>为了让用户和你的应用进行交互，可以用 <code>v-on</code> 指令添加一个事件监听器，通过它调用在 Vue 实例中定义的方法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span> <span class="na">v-on:click</span><span class="o">=</span><span class="s">&#34;hello&#34;</span><span class="p">&gt;</span>打招呼<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">msg</span><span class="o">:</span><span class="s2">&#34;hello vue.js!&#34;</span>
+        <span class="p">},</span>
+        
+        <span class="nx">methods</span><span class="o">:</span>
+        <span class="p">{</span>
+            <span class="nx">hello</span><span class="o">:</span><span class="kd">function</span> <span class="p">()</span>
+            <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">msg</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>结果：</p>
+<p><img src="/image-20210129201313111.png" alt="image-20210129201313111"></p>
+<p><strong>双向绑定</strong></p>
+<p>Vue 还提供了 <code>v-model</code> 指令，它能轻松实现表单输入和应用状态之间的双向绑定。</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;msg&#34;</span><span class="p">&gt;</span>
+    你输入的是：{{msg}}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">msg</span><span class="o">:</span><span class="s2">&#34;&#34;</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p>v-<strong>model</strong>自动绑定了表单的value！</p>
+<p>结果：</p>
+<p><img src="/image-20210129202743605.png" alt="image-20210129202743605"></p>
+<h3 id="8组件的组织">8、组件的组织</h3>
+<p>通常一个应用会以一棵嵌套的组件树的形式来组织：</p>
+<p><img src="/components.png" alt="Component Tree"></p>
+<p>例如，你可能会有页头、侧边栏、内容区等组件，每个组件又包含了其它的像导航链接、博文之类的组件。</p>
+<p>为了能在模板中使用，这些组件必须先注册以便 Vue 能够识别。这里有两种组件的注册类型：<strong>全局注册</strong>和<strong>局部注册</strong>。至此，我们的组件都只是通过 <code>Vue.component</code> 全局注册的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">Vue.component(&#39;my-component-name&#39;, {
+  // ... options ...
+})
+</code></pre></div><p><strong>通过 Prop 向子组件传递数据</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+        //使用定义模板   拿出数据      绑定数据到it
+       <span class="p">&lt;</span><span class="nt">chao</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in items&#34;</span> <span class="na">v-bind:it</span><span class="o">=</span><span class="s">&#34;item&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">chao</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s2">&#34;chao&#34;</span><span class="p">,{</span>
+        <span class="c1">//接受数据it
+</span><span class="c1"></span>        <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;it&#39;</span><span class="p">],</span>
+        <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;&lt;h3&gt;{{it}}&lt;/h3&gt;&#39;</span>
+    <span class="p">})</span>
+
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+            <span class="nx">items</span><span class="o">:</span><span class="p">[</span><span class="s2">&#34;java&#34;</span><span class="p">,</span><span class="s2">&#34;js&#34;</span><span class="p">,</span><span class="s2">&#34;c++&#34;</span><span class="p">,</span><span class="s2">&#34;php&#34;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><p><img src="/image-20210130141604416.png" alt="image-20210130141604416"></p>
+<h3 id="9axios">9、axios</h3>
+<h4 id="什么是-axios">什么是 axios？</h4>
+<p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
+<p>特性</p>
+<ul>
+<li>从浏览器中创建 <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequests</a></li>
+<li>从 node.js 创建 <a href="http://nodejs.org/api/http.html">http</a> 请求</li>
+<li>支持 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> API</li>
+<li>拦截请求和响应</li>
+<li>转换请求数据和响应数据</li>
+<li>取消请求</li>
+<li>自动转换 JSON 数据</li>
+<li>客户端支持防御 <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">XSRF</a></li>
+</ul>
+<h4 id="使用axios">使用Axios</h4>
+<h4 id="1导入依赖">1、导入依赖</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/axios/dist/axios.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="执行get请求">执行get请求</h4>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{info.name}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{info.age}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">v-bind:href</span><span class="o">=</span><span class="s">&#34;info.url&#34;</span><span class="p">&gt;</span>点我<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34; https://lib.baomitu.com/vue/2.6.12/vue.common.dev.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://unpkg.com/axios/dist/axios.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+        <span class="nx">el</span><span class="o">:</span><span class="s2">&#34;#app&#34;</span><span class="p">,</span>
+        <span class="nx">data</span><span class="p">()</span>
+        <span class="p">{</span>
+            <span class="k">return</span><span class="p">{</span>
+            <span class="nx">info</span><span class="o">:</span><span class="p">{</span>
+                <span class="nx">name</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+                <span class="nx">age</span><span class="o">:</span><span class="kc">null</span><span class="p">,</span>
+                <span class="nx">url</span><span class="o">:</span><span class="kc">null</span>
+            <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+       <span class="nx">mounted</span><span class="p">()</span>
+       <span class="p">{</span>
+           <span class="nx">axios</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;01.json&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="p">=&gt;(</span><span class="k">this</span><span class="p">.</span><span class="nx">info</span><span class="o">=</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">))</span>
+       <span class="p">}</span>
+
+    <span class="p">});</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div><h4 id="执行-post-请求">执行 <code>POST</code> 请求</h4>
+<div class="highlight"><pre class="chroma"><code class="language-apl" data-lang="apl"><span class="nv">axios</span><span class="na">.</span><span class="nv">post</span><span class="p">(</span><span class="s1">&#39;/user&#39;</span><span class="o">,</span> <span class="kt">{</span>
+    <span class="nv">firstName</span><span class="bp">:</span> <span class="s1">&#39;Fred&#39;</span><span class="o">,</span>
+    <span class="nv">lastName</span><span class="bp">:</span> <span class="s1">&#39;Flintstone&#39;</span>
+  <span class="kt">}</span><span class="p">)</span>
+  <span class="na">.</span><span class="nv">then</span><span class="p">(</span><span class="nv">function</span> <span class="p">(</span><span class="nv">response</span><span class="p">)</span> <span class="kt">{</span>
+    <span class="nv">console</span><span class="na">.</span><span class="nv">log</span><span class="p">(</span><span class="nv">response</span><span class="p">)</span><span class="sr">;</span>
+  <span class="kt">}</span><span class="p">)</span>
+  <span class="na">.</span><span class="nv">catch</span><span class="p">(</span><span class="nv">function</span> <span class="p">(</span><span class="nv">error</span><span class="p">)</span> <span class="kt">{</span>
+    <span class="nv">console</span><span class="na">.</span><span class="nv">log</span><span class="p">(</span><span class="nv">error</span><span class="p">)</span><span class="sr">;</span>
+  <span class="kt">}</span><span class="p">)</span><span class="sr">;</span>
+</code></pre></div><h4 id="执行多个并发请求">执行多个并发请求</h4>
+<div class="highlight"><pre class="chroma"><code class="language-apl" data-lang="apl"><span class="nv">function</span> <span class="nv">getUserAccount</span><span class="p">()</span> <span class="kt">{</span>
+  <span class="nv">return</span> <span class="nv">axios</span><span class="na">.</span><span class="nv">get</span><span class="p">(</span><span class="s1">&#39;/user/12345&#39;</span><span class="p">)</span><span class="sr">;</span>
+<span class="kt">}</span>
+
+<span class="nv">function</span> <span class="nv">getUserPermissions</span><span class="p">()</span> <span class="kt">{</span>
+  <span class="nv">return</span> <span class="nv">axios</span><span class="na">.</span><span class="nv">get</span><span class="p">(</span><span class="s1">&#39;/user/12345/permissions&#39;</span><span class="p">)</span><span class="sr">;</span>
+<span class="kt">}</span>
+
+<span class="nv">axios</span><span class="na">.</span><span class="nv">all</span><span class="p">(</span><span class="sr">[</span><span class="nv">getUserAccount</span><span class="p">()</span><span class="o">,</span> <span class="nv">getUserPermissions</span><span class="p">()</span><span class="sr">]</span><span class="p">)</span>
+  <span class="na">.</span><span class="nv">then</span><span class="p">(</span><span class="nv">axios</span><span class="na">.</span><span class="nv">spread</span><span class="p">(</span><span class="nv">function</span> <span class="p">(</span><span class="nv">acct</span><span class="o">,</span> <span class="nv">perms</span><span class="p">)</span> <span class="kt">{</span>
+    <span class="na">//</span> <span class="err">两个请求现在都执行完成</span>
+  <span class="kt">}</span><span class="p">))</span><span class="sr">;</span>
+</code></pre></div><h3 id="10计算属性">10、计算属性</h3>
+<p>模板内的表达式非常便利，但是设计它们的初衷是用于简单运算的。在模板中放入太多的逻辑会让模板过重且难以维护。例如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;example&#34;</span><span class="p">&gt;</span>
+  {{ message.split(&#39;&#39;).reverse().join(&#39;&#39;) }}
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div><p>在这个地方，模板不再是简单的声明式逻辑。你必须看一段时间才能意识到，这里是想要显示变量 <code>message</code> 的翻转字符串。当你想要在模板中的多处包含此翻转字符串时，就会更加难以处理。</p>
+<p>所以，对于任何复杂逻辑，你都应当使用<strong>计算属性</strong>。</p>
+<h4 id="基础例子">基础例子</h4>
+<div class="highlight"><pre class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;example&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Original</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;{{ message }}&#34;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span><span class="nx">Computed</span> <span class="nx">reversed</span> <span class="nx">message</span><span class="o">:</span> <span class="s2">&#34;{{ reversedMessage }}&#34;</span><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#example&#39;</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Hello&#39;</span>
+  <span class="p">},</span>
+  <span class="nx">computed</span><span class="o">:</span> <span class="p">{</span>
+    <span class="c1">// 计算属性的 getter
+</span><span class="c1"></span>    <span class="nx">reversedMessage</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// `this` 指向 vm 实例
+</span><span class="c1"></span>      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></div><p>结果：</p>
+<p>Original message: &ldquo;Hello&rdquo;</p>
+<p>Computed reversed message: &ldquo;olleH&rdquo;</p>
+<p>这里我们声明了一个计算属性 <code>reversedMessage</code>。我们提供的函数将用作 property <code>vm.reversedMessage</code> 的 getter 函数：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">reversedMessage</span><span class="p">)</span> <span class="c1">// =&gt; &#39;olleH&#39;
+</span><span class="c1"></span><span class="nx">vm</span><span class="p">.</span><span class="nx">message</span> <span class="o">=</span> <span class="s1">&#39;Goodbye&#39;</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">vm</span><span class="p">.</span><span class="nx">reversedMessage</span><span class="p">)</span> <span class="c1">// =&gt; &#39;eybdooG&#39;
+</span></code></pre></div><p>你可以打开浏览器的控制台，自行修改例子中的 vm。<code>vm.reversedMessage</code> 的值始终取决于 <code>vm.message</code> 的值。</p>
+<p>你可以像绑定普通 property 一样在模板中绑定计算属性。Vue 知道 <code>vm.reversedMessage</code> 依赖于 <code>vm.message</code>，因此当 <code>vm.message</code> 发生改变时，所有依赖 <code>vm.reversedMessage</code> 的绑定也会更新。而且最妙的是我们已经以声明的方式创建了这种依赖关系：计算属性的 getter 函数是没有副作用 (side effect) 的，这使它更易于测试和理解。</p>
+<p>计算属性缓存 vs 方法</p>
+<p>你可能已经注意到我们可以通过在表达式中调用方法来达到同样的效果：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Reversed message: &#34;{{ reversedMessage() }}&#34;<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+// 在组件中
+methods: {
+  reversedMessage: function () {
+    return this.message.split(&#39;&#39;).reverse().join(&#39;&#39;)
+  }
+}
+</code></pre></div><p>我们可以将同一函数定义为一个方法而不是一个计算属性。两种方式的最终结果确实是完全相同的。然而，不同的是<strong>计算属性是基于它们的响应式依赖进行缓存的</strong>。只在相关响应式依赖发生改变时它们才会重新求值。这就意味着只要 <code>message</code> 还没有发生改变，多次访问 <code>reversedMessage</code> 计算属性会立即返回之前的计算结果，而不必再次执行函数。</p>
+<p>这也同样意味着下面的计算属性将不再更新，因为 <code>Date.now()</code> 不是响应式依赖：</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">computed: {
+  now: function () {
+    return Date.now()
+  }
+}
+</code></pre></div><p>相比之下，每当触发重新渲染时，调用方法将<strong>总会</strong>再次执行函数。</p>
+<p>我们为什么需要缓存？假设我们有一个性能开销比较大的计算属性 <strong>A</strong>，它需要遍历一个巨大的数组并做大量的计算。然后我们可能有其他的计算属性依赖于 <strong>A</strong>。如果没有缓存，我们将不可避免的多次执行 <strong>A</strong> 的 getter！如果你不希望有缓存，请用方法来替代。</p>
+<h3 id="11自定义事件">11、自定义事件</h3>
+<p><strong>事件名</strong></p>
+<p>不同于组件和 prop，事件名不存在任何自动化的大小写转换。而是触发的事件名需要完全匹配监听这个事件所用的名称。举个例子，如果触发一个 camelCase 名字的事件：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">this</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;myEvent&#39;</span><span class="p">)</span>
+</code></pre></div><p>则监听这个名字的 kebab-case 版本是不会有任何效果的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c">&lt;!--</span> <span class="nx">没有效果</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">my</span><span class="o">-</span><span class="nx">component</span> <span class="nx">v</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">my</span><span class="o">-</span><span class="nx">event</span><span class="o">=</span><span class="s2">&#34;doSomething&#34;</span><span class="o">&gt;&lt;</span><span class="err">/my-component&gt;</span>
+</code></pre></div><p>不同于组件和 prop，事件名不会被用作一个 JavaScript 变量名或 property 名，所以就没有理由使用 camelCase 或 PascalCase 了。并且 <code>v-on</code> 事件监听器在 DOM 模板中会被自动转换为全小写 (因为 HTML 是大小写不敏感的)，所以 <code>v-on:myEvent</code> 将会变成 <code>v-on:myevent</code>——导致 <code>myEvent</code> 不可能被监听到。</p>
+<h3 id="12第一个vue-cli程序">12、第一个Vue-cli程序</h3>
+<p>1.创建空项目并用IDEA打开</p>
+<p>2.创建模块modules</p>
+<p><img src="/image-20210131150617080.png" alt="image-20210131150617080"></p>
+<p>3.创建js文件</p>
+<p><img src="/image-20210131150645530.png" alt="image-20210131150645530"></p>
+<p>4.暴露一个方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//暴露一个方法
+</span><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">sayHi</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;CodeChao&lt;/h1&gt;&#34;</span><span class="p">)</span>
+<span class="p">};</span>
+</code></pre></div><p>5.编写主入口js文件</p>
+<p><img src="/image-20210131150824228.png" alt="image-20210131150824228"></p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">hello</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./hello&#34;</span><span class="p">);</span>
+
+<span class="nx">hello</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
+</code></pre></div><p>6、编写webpack.config.js文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">=</span><span class="p">{</span>
+    <span class="nx">entry</span><span class="o">:</span><span class="s1">&#39;./modules/main.js&#39;</span><span class="p">,</span>
+    <span class="nx">output</span><span class="o">:</span>
+        <span class="p">{</span>
+            <span class="nx">filename</span><span class="o">:</span><span class="s1">&#39;./js/bundle.js&#39;</span>
+        <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div><p>7、终端执行打包命令</p>
+<p>Webpack</p>
+<p>打包完成</p>
+<p><img src="/image-20210131151301531.png" alt="image-20210131151301531"></p>
+<p>多出一个文件夹</p>
+<p><img src="/image-20210131151358892.png" alt="image-20210131151358892"></p>
+<p>8、创建index.html文件并引入打包文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Title<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./dist/js/bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p>9、浏览器执行</p>
+<p><img src="/image-20210131151539667.png" alt="image-20210131151539667"></p>
+<p><strong>创建Vue-cli步骤</strong></p>
+<p>进入工程目录</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> hello-vue
+</code></pre></div><p>安装vue-router</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">npm install vue-router --save-dev
+</code></pre></div><p>安装element-ui -s</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">npm i element-ui -s
+</code></pre></div><p>安装依赖</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">npm install
+</code></pre></div><p>安装sass加载器</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cnpm install sass-loader node-sass --save-dev
+</code></pre></div><p>启动测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">npm run dev
+</code></pre></div></div>
+        <div class="post-footer">
+            <div class="info">
+                
+                
+            </div>
+        </div>
+
+        
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js"
+        integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw="
+        crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js"
+        integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js"
+        integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro="
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -6,7 +6,25 @@
     <description>Recent content in Posts on Website of Dexter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 22 Jan 2021 17:55:15 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 04 Feb 2021 15:07:48 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog3</title>
+      <link>https://yexiang43.github.io/post/blog3/</link>
+      <pubDate>Thu, 04 Feb 2021 15:07:48 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/post/blog3/</guid>
+      <description>Vue学习笔记 1.什么是MVVM？ MVVM是Model-View-ViewModel的简写。它本质上就是MVC 的改进版。MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开。当然这些事 ViewModel 已经帮我们做了，它可以取出 Model 的数据同时帮忙处理 View 中由于需要展示内容而涉及的业务逻辑。。MVVM（Model-View-ViewModel）框架的由来便是MVP（Model-View-Presenter）模式与WPF结合的应用方式时发展演变过来的一种新型架构框架。它立足于原有MVP框架并且把WPF的新特性糅合进去，以应对客户日益复杂的需求变化。</description>
+    </item>
+    
+    <item>
+      <title>Blog2</title>
+      <link>https://yexiang43.github.io/post/blog2/</link>
+      <pubDate>Thu, 04 Feb 2021 15:01:51 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/post/blog2/</guid>
+      <description>SpringMVC学习笔记 1.什么是SpringMVC？  + Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。 + Spring 框架提供了构建 [Web](https://baike.</description>
+    </item>
+    
     <item>
       <title>Spring-IOC学习笔记</title>
       <link>https://yexiang43.github.io/post/blog1/</link>
