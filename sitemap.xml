@@ -3,17 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://yexiang43.github.io/post/mac%E5%AE%89%E8%A3%85brew%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</loc>
-    <lastmod>2021-02-20T14:24:22+08:00</lastmod>
+    <loc>https://yexiang43.github.io/post/</loc>
+    <lastmod>2021-02-20T14:44:52+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yexiang43.github.io/post/</loc>
-    <lastmod>2021-02-20T14:24:22+08:00</lastmod>
+    <loc>https://yexiang43.github.io/tags/ssm/</loc>
+    <lastmod>2021-02-20T14:44:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yexiang43.github.io/post/ssm%E6%95%B4%E5%90%88%E6%AD%A5%E9%AA%A4/</loc>
+    <lastmod>2021-02-20T14:44:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yexiang43.github.io/tags/</loc>
+    <lastmod>2021-02-20T14:44:52+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://yexiang43.github.io/</loc>
+    <lastmod>2021-02-20T14:44:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yexiang43.github.io/post/mac%E5%AE%89%E8%A3%85brew%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2021-02-20T14:24:22+08:00</lastmod>
   </url>
   
@@ -54,10 +69,6 @@
   
   <url>
     <loc>https://yexiang43.github.io/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>https://yexiang43.github.io/tags/</loc>
   </url>
   
 </urlset>

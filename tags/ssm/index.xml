@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ssm on Website of Dexter</title>
+    <link>https://yexiang43.github.io/tags/ssm/</link>
+    <description>Recent content in ssm on Website of Dexter</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Feb 2021 14:44:52 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/tags/ssm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ssm整合步骤</title>
+      <link>https://yexiang43.github.io/post/ssm%E6%95%B4%E5%90%88%E6%AD%A5%E9%AA%A4/</link>
+      <pubDate>Sat, 20 Feb 2021 14:44:52 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/post/ssm%E6%95%B4%E5%90%88%E6%AD%A5%E9%AA%A4/</guid>
+      <description>SSM整合步骤 1.环境   IDEA
+  JDK 1.8
+  Tomcat 9</description>
+    </item>
+    
+  </channel>
+</rss>
