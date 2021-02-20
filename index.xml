@@ -25,7 +25,7 @@
       
       <guid>https://yexiang43.github.io/posts/machugo%E5%8D%9A%E5%AE%A2%E6%8F%90%E4%BA%A4/</guid>
       <description>Mac Hugo创建博客步骤 1、打开终端，进入到Hugo博客目录
-cd 目录名 2、创建博客
+cd 目录名 2、创建博客，要在hugo根目录下
 hugo new posts/xxxx.md 3、打开创建的博客进行内容书写</description>
     </item>
     
