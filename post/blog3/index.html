@@ -191,7 +191,7 @@
      {{msg}}
  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div><p>5、浏览器看结果</p>
-<p><img src="/image-20210129191949258.png" alt="image-20210129191949258"></p>
+<p><img src="/images/image-20210129191949258.png" alt="image-20210129191949258"></p>
 <h3 id="6v-blnd">6、V-Blnd</h3>
 <p>我们已经成功创建了第一个 Vue 应用！看起来这跟渲染一个字符串模板非常类似，但是 Vue 在背后做了大量工作。现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。我们要怎么确认呢？打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <strong>msg</strong> 的值，你将看到上例相应地更新。</p>
 <p>除了文本插值，我们还可以像这样来绑定元素：</p>
@@ -200,7 +200,7 @@
     鼠标悬停几秒钟查看此处动态绑定的提示信息！
     <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></div><p><img src="/image-20210129194129594.png" alt="image-20210129194129594"></p>
+</code></pre></div><p><img src="/images/image-20210129194129594.png" alt="image-20210129194129594"></p>
 <h3 id="7if与for">7、if与for</h3>
 <p>(1)if</p>
 <p>控制切换一个元素是否显示</p>
@@ -270,7 +270,7 @@
     <span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>结果：</p>
-<p><img src="/image-20210129201313111.png" alt="image-20210129201313111"></p>
+<p><img src="/images/image-20210129201313111.png" alt="image-20210129201313111"></p>
 <p><strong>双向绑定</strong></p>
 <p>Vue 还提供了 <code>v-model</code> 指令，它能轻松实现表单输入和应用状态之间的双向绑定。</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p">&gt;</span>
@@ -289,7 +289,7 @@
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div><p>v-<strong>model</strong>自动绑定了表单的value！</p>
 <p>结果：</p>
-<p><img src="/image-20210129202743605.png" alt="image-20210129202743605"></p>
+<p><img src="/images/image-20210129202743605.png" alt="image-20210129202743605"></p>
 <h3 id="8组件的组织">8、组件的组织</h3>
 <p>通常一个应用会以一棵嵌套的组件树的形式来组织：</p>
 <p><img src="/components.png" alt="Component Tree"></p>
@@ -320,7 +320,7 @@
         <span class="p">}</span>
     <span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></div><p><img src="/image-20210130141604416.png" alt="image-20210130141604416"></p>
+</code></pre></div><p><img src="/images/image-20210130141604416.png" alt="image-20210130141604416"></p>
 <h3 id="9axios">9、axios</h3>
 <h4 id="什么是-axios">什么是 axios？</h4>
 <p>Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。</p>
@@ -454,9 +454,9 @@ methods: {
 <h3 id="12第一个vue-cli程序">12、第一个Vue-cli程序</h3>
 <p>1.创建空项目并用IDEA打开</p>
 <p>2.创建模块modules</p>
-<p><img src="/image-20210131150617080.png" alt="image-20210131150617080"></p>
+<p><img src="/images/image-20210131150617080.png" alt="image-20210131150617080"></p>
 <p>3.创建js文件</p>
-<p><img src="/image-20210131150645530.png" alt="image-20210131150645530"></p>
+<p><img src="/images/image-20210131150645530.png" alt="image-20210131150645530"></p>
 <p>4.暴露一个方法</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//暴露一个方法
 </span><span class="c1"></span><span class="nx">exports</span><span class="p">.</span><span class="nx">sayHi</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span>
@@ -464,7 +464,7 @@ methods: {
     <span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s2">&#34;&lt;h1&gt;CodeChao&lt;/h1&gt;&#34;</span><span class="p">)</span>
 <span class="p">};</span>
 </code></pre></div><p>5.编写主入口js文件</p>
-<p><img src="/image-20210131150824228.png" alt="image-20210131150824228"></p>
+<p><img src="/images/image-20210131150824228.png" alt="image-20210131150824228"></p>
 <div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">hello</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./hello&#34;</span><span class="p">);</span>
 
 <span class="nx">hello</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">();</span>
@@ -479,9 +479,9 @@ methods: {
 </code></pre></div><p>7、终端执行打包命令</p>
 <p>Webpack</p>
 <p>打包完成</p>
-<p><img src="/image-20210131151301531.png" alt="image-20210131151301531"></p>
+<p><img src="/images/image-20210131151301531.png" alt="image-20210131151301531"></p>
 <p>多出一个文件夹</p>
-<p><img src="/image-20210131151358892.png" alt="image-20210131151358892"></p>
+<p><img src="/images/image-20210131151358892.png" alt="image-20210131151358892"></p>
 <p>8、创建index.html文件并引入打包文件</p>
 <div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
@@ -496,7 +496,7 @@ methods: {
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div><p>9、浏览器执行</p>
-<p><img src="/image-20210131151539667.png" alt="image-20210131151539667"></p>
+<p><img src="/images/image-20210131151539667.png" alt="image-20210131151539667"></p>
 <p><strong>创建Vue-cli步骤</strong></p>
 <p>进入工程目录</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> hello-vue
