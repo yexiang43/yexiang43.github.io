@@ -6,7 +6,38 @@
     <description>Recent content on Website of Dexter</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Feb 2021 15:07:48 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Feb 2021 14:24:22 +0800</lastBuildDate><atom:link href="https://yexiang43.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mac安装brew详细教程</title>
+      <link>https://yexiang43.github.io/posts/mac%E5%AE%89%E8%A3%85brew%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Sat, 20 Feb 2021 14:24:22 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/posts/mac%E5%AE%89%E8%A3%85brew%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</guid>
+      <description>Mac安装brew详细教程 1.打开终端并输入以下命令 /bin/zsh -c &amp;#34;$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)&amp;#34; 回车会出现这个页面
+选择一个镜像；
+注意：这里输入Y；</description>
+    </item>
+    
+    <item>
+      <title>Machugo博客提交</title>
+      <link>https://yexiang43.github.io/posts/machugo%E5%8D%9A%E5%AE%A2%E6%8F%90%E4%BA%A4/</link>
+      <pubDate>Sat, 20 Feb 2021 14:22:24 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/posts/machugo%E5%8D%9A%E5%AE%A2%E6%8F%90%E4%BA%A4/</guid>
+      <description>Mac Hugo创建博客步骤 1、打开终端，进入到Hugo博客目录
+cd 目录名 2、创建博客
+hugo new posts/xxxx.md 3、打开创建的博客进行内容书写</description>
+    </item>
+    
+    <item>
+      <title>Mybatis学习笔记</title>
+      <link>https://yexiang43.github.io/posts/mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 20 Feb 2021 13:57:52 +0800</pubDate>
+      
+      <guid>https://yexiang43.github.io/posts/mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>Mybatis学习笔记 环境说明：  jdk 8 + MySQL 5.7.19 maven-3.6.1 IDEA  学习前需要掌握：</description>
+    </item>
+    
     <item>
       <title>Vue学习笔记</title>
       <link>https://yexiang43.github.io/post/blog3/</link>

@@ -171,7 +171,7 @@
 <p>SpringMVC的核心是<strong>DispatcherServlet</strong>中心控制器</p>
 <p>Spring MVC框架像许多其他MVC框架一样, <strong>以请求为驱动</strong> , <strong>围绕一个中心Servlet分派请求及提供其他功能</strong>  ,DispatcherServlet  是一个实际的Servlet (它继承自HttpServlet 基类)。</p>
 <p><strong>SpringMVC执行流程图</strong></p>
-<p><img src="/image-20210123163716484.png" alt="image-20210123163716484"></p>
+<p><img src="/images/image-20210123163716484.png" alt="image-20210123163716484"></p>
 <p>1.用户发起请求，中心控制器接到用户请求，调用处理器映射器（HanderMapping）处理用户请求,</p>
 <p>​    在通过调用HanderExecution解析用户请求查找Handler，最后返回给中心控制器。</p>
 <p>2.中心控制器得到用户请求的Handler，调用处理器适配器，找到用户请求的Controller。</p>
@@ -277,7 +277,7 @@
 &lt;/html&gt;
 
 </code></pre></div><p>8.配置tomcat启动测试 得到效果</p>
-<p><img src="/image-20210123170601067.png" alt="image-20210123170601067"></p>
+<p><img src="/images/image-20210123170601067.png" alt="image-20210123170601067"></p>
 <h3 id="2使用注解开发springmvc">2.使用注解开发SpringMVC</h3>
 <p>准备工作：</p>
 <ol>
@@ -365,7 +365,7 @@ ${msg}
 &lt;/html&gt;
 
 </code></pre></div><p>5.配置tomcat 启动测试</p>
-<p><img src="/image-20210123200834896.png" alt=""></p>
+<p><img src="/images/image-20210123200834896.png" alt=""></p>
 <h3 id="3requestmapping">3.RequestMapping</h3>
 <p><strong>@RequestMapping</strong></p>
 <ul>
@@ -443,7 +443,7 @@ ${msg}
     <span class="o">}</span>
 <span class="o">}</span>
    
-</code></pre></div><p><img src="/image-20210123202035971.png" alt="image-20210123202035971"></p>
+</code></pre></div><p><img src="/images/image-20210123202035971.png" alt="image-20210123202035971"></p>
 </li>
 </ol>
 <p><strong>使用method属性指定请求类型</strong></p>
@@ -468,7 +468,7 @@ ${msg}
 </code></pre></div></li>
 <li>
 <p>使用浏览器地址栏进行访问默认是Get请求，会报错405：</p>
-<p><img src="/image-20210123202351605.png" alt="image-20210123202351605"></p>
+<p><img src="/images/image-20210123202351605.png" alt="image-20210123202351605"></p>
 </li>
 <li>
 <p>将POST修改为GET就可以了；</p>
@@ -485,7 +485,7 @@ ${msg}
     <span class="o">}</span>
 <span class="o">}</span>
   
-</code></pre></div><p><img src="/image-20210123202515921.png" alt="image-20210123202515921"></p>
+</code></pre></div><p><img src="/images/image-20210123202515921.png" alt="image-20210123202515921"></p>
 <p>另外，可以使用组合注解</p>
 <div class="highlight"><pre class="chroma"><code class="language-apl" data-lang="apl"><span class="err">@</span><span class="nv">GetMapping</span>
 <span class="err">@</span><span class="nv">PostMapping</span>
@@ -507,7 +507,7 @@ ${msg}
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><p>也是可以的！</p>
-<p><img src="/image-20210123202515921.png" alt="image-20210123202515921"></p>
+<p><img src="/images/image-20210123202515921.png" alt="image-20210123202515921"></p>
 <p>在实际开发中是用组合注解比较多！！！</p>
 <hr>
 <p>#学习笔记#springMVC#maven</p>
