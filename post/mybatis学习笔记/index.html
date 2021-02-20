@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme=""><head>
+    <title> Dexter | Mybatis学习笔记 </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.80.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="The personal homepage of Dexter">
+    
+    <link rel="stylesheet"
+          href="https://yexiang43.github.io/css/style.min.bb7146835efb4da60bec03e4c446c3a3b94260c78c8bdb82057b37dab9c8768e.css"
+          integrity="sha256-u3FGg177TaYL7APkxEbDo7lCYMeMi9uCBXs32rnIdo4="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="https://yexiang43.github.io/css/markupHighlight.min.9755453ffb7bc4cd220f86ebb5922107b49f193cc62fc17e9785d27b33a8bf5b.css"
+        integrity="sha256-l1VFP/t7xM0iD4brtZIhB7SfGTzGL8F&#43;l4XSezOov1s="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="https://yexiang43.github.io/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://yexiang43.github.io/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://yexiang43.github.io/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://yexiang43.github.io/favicons/favicon-16x16.png">
+
+    <link rel="canonical" href="https://yexiang43.github.io/post/mybatis%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="https://yexiang43.github.io/js/anatole-header.min.d8599ee07b7d3f11bafbac30657ccc591e8d7fd36a9f580cd4c09e24e0e4a971.js"
+            integrity="sha256-2Fme4Ht9PxG6&#43;6wwZXzMWR6Nf9Nqn1gM1MCeJODkqXE="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="https://yexiang43.github.io/js/anatole-theme-switcher.min.e289e9ebb2a4e7a7f895859c8a2b0da2de1ec73f22cea58d8475aa0597023837.js"
+                integrity="sha256-4onp67Kk56f4lYWciisNot4exz8izqWNhHWqBZcCODc="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Mybatis学习笔记"/>
+<meta name="twitter:description" content="Mybatis学习笔记 环境说明：  jdk 8 &#43; MySQL 5.7.19 maven-3.6.1 IDEA  学习前需要掌握："/>
+
+</head>
+<body><div class="sidebar animated fadeInDown ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="https://yexiang43.github.io/profile.jpg" alt="profile picture">
+            <h3 title=""><a href="/">I&#39;M Dexter</a></h3>
+            <div class="description">
+                <p>The personal homepage of Dexter</p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+            <li>
+                <a href="mailto:z18595741451@163.com" rel="me" aria-label="e-mail">
+                    <i class="fas fa-envelope fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="" rel="me" aria-label="Linkedin">
+                    <i class="fab fa-linkedin fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="https://github.com/yexiang43" rel="me" aria-label="GitHub">
+                    <i class="fab fa-github fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            <li>
+                <a href="" rel="me" aria-label="instagram">
+                    <i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+    <div class="footer">
+        <div class="by_farbox">&copy; Dexter  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  animated fadeInDown ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/post/"
+                        
+                   title="">Posts</a></li>
+        
+            
+            <li><a 
+                   href="/about/"
+                        
+                   title="">About</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  animated fadeInDown ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>Mybatis学习笔记</h3>
+                
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> Sat, Feb 20, 2021 
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">18-minute read</span>
+                    </div>
+                
+            </div>
+
+            <h1 id="mybatis学习笔记">Mybatis学习笔记</h1>
+<h2 id="环境说明">环境说明：</h2>
+<ul>
+<li>jdk 8 +</li>
+<li>MySQL 5.7.19</li>
+<li>maven-3.6.1</li>
+<li>IDEA</li>
+</ul>
+<p>学习前需要掌握：</p>
+<ul>
+<li>JDBC</li>
+<li>MySQL</li>
+<li>Java 基础</li>
+<li>Maven</li>
+<li>Junit</li>
+</ul>
+<h2 id="什么是mybatis">什么是MyBatis</h2>
+<ul>
+<li>MyBatis 是一款优秀的<strong>持久层框架</strong></li>
+<li>MyBatis 避免了几乎所有的 JDBC 代码和手动设置参数以及获取结果集的过程</li>
+<li>MyBatis 可以使用简单的 XML 或注解来配置和映射原生信息，将接口和 Java 的 实体类 【Plain Old Java Objects,普通的 Java对象】映射成数据库中的记录。</li>
+<li>MyBatis 本是apache的一个开源项目ibatis, 2010年这个项目由apache 迁移到了google code，并且改名为MyBatis 。</li>
+<li>2013年11月迁移到<strong>Github</strong> .</li>
+<li>Mybatis官方文档 : <a href="http://www.mybatis.org/mybatis-3/zh/index.html">http://www.mybatis.org/mybatis-3/zh/index.html</a></li>
+<li>GitHub : <a href="https://github.com/mybatis/mybatis-3">https://github.com/mybatis/mybatis-3</a></li>
+</ul>
+<blockquote>
+<p>持久化</p>
+</blockquote>
+<p><strong>持久化是将程序数据在持久状态和瞬时状态间转换的机制。</strong></p>
+<ul>
+<li>即把数据（如内存中的对象）保存到可永久保存的存储设备中（如磁盘）。持久化的主要应用是将内存中的对象存储在数据库中，或者存储在磁盘文件中、XML数据文件中等等。</li>
+<li>JDBC就是一种持久化机制。文件IO也是一种持久化机制。</li>
+<li>在生活中 : 将鲜肉冷藏，吃的时候再解冻的方法也是。将水果做成罐头的方法也是。</li>
+</ul>
+<p><strong>为什么需要持久化服务呢？那是由于内存本身的缺陷引起的</strong></p>
+<ul>
+<li>内存断电后数据会丢失，但有一些对象是无论如何都不能丢失的，比如银行账号等，遗憾的是，人们还无法保证内存永不掉电。</li>
+<li>内存过于昂贵，与硬盘、光盘等外存相比，内存的价格要高2~3个数量级，而且维持成本也高，至少需要一直供电吧。所以即使对象不需要永久保存，也会因为内存的容量限制不能一直呆在内存中，需要持久化来缓存到外存。</li>
+</ul>
+<h2 id="持久层">持久层</h2>
+<p><strong>什么是持久层？</strong></p>
+<ul>
+<li>完成持久化工作的代码块 .  &mdash;-&gt;  dao层 【DAO (Data Access Object)  数据访问对象】</li>
+<li>大多数情况下特别是企业级应用，数据持久化往往也就意味着将内存中的数据保存到磁盘上加以固化，而持久化的实现过程则大多通过各种<strong>关系数据库</strong>来完成。</li>
+<li>不过这里有一个字需要特别强调，也就是所谓的“层”。对于应用系统而言，数据持久功能大多是必不可少的组成部分。也就是说，我们的系统中，已经天然的具备了“持久层”概念？也许是，但也许实际情况并非如此。之所以要独立出一个“持久层”的概念,而不是“持久模块”，“持久单元”，也就意味着，我们的系统架构中，应该有一个相对独立的逻辑层面，专注于数据持久化逻辑的实现.</li>
+<li>与系统其他部分相对而言，这个层面应该具有一个较为清晰和严格的逻辑边界。【说白了就是用来操作数据库存在的！】</li>
+</ul>
+<blockquote>
+<p>为什么需要Mybatis</p>
+</blockquote>
+<ul>
+<li>
+<p>Mybatis就是帮助程序猿将数据存入数据库中 , 和从数据库中取数据 .</p>
+</li>
+<li>
+<p>传统的jdbc操作 , 有很多重复代码块 .比如 : 数据取出时的封装 , 数据库的建立连接等等&hellip; , 通过框架可以减少重复代码,提高开发效率 .</p>
+</li>
+<li>
+<p>MyBatis 是一个半自动化的<strong>ORM框架 (Object Relationship Mapping) &ndash;&gt;对象关系映射</strong></p>
+</li>
+<li>
+<p>所有的事情，不用Mybatis依旧可以做到，只是用了它，所有实现会更加简单！<strong>技术没有高低之分，只有使用这个技术的人有高低之别</strong></p>
+</li>
+<li>
+<p>MyBatis的优点</p>
+</li>
+<li>
+<ul>
+<li>简单易学：本身就很小且简单。没有任何第三方依赖，最简单安装只要两个jar文件+配置几个sql映射文件就可以了，易于学习，易于使用，通过文档和源代码，可以比较完全的掌握它的设计思路和实现。</li>
+<li>灵活：mybatis不会对应用程序或者数据库的现有设计强加任何影响。sql写在xml里，便于统一管理和优化。通过sql语句可以满足操作数据库的所有需求。</li>
+<li>解除sql与程序代码的耦合：通过提供DAO层，将业务逻辑和数据访问逻辑分离，使系统的设计更清晰，更易维护，更易单元测试。sql和代码的分离，提高了可维护性。</li>
+<li>提供xml标签，支持编写动态sql。</li>
+<li>&hellip;&hellip;.</li>
+</ul>
+</li>
+<li>
+<p>最重要的一点，使用的人多！公司需要！</p>
+</li>
+</ul>
+<h2 id="mybatis第一个程序">MyBatis第一个程序</h2>
+<p><strong>思路流程：搭建环境&ndash;&gt;导入Mybatis&mdash;&gt;编写代码&mdash;&gt;测试</strong></p>
+<blockquote>
+<p>代码演示</p>
+</blockquote>
+<p>1、搭建实验数据库</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="o">`</span><span class="n">mybatis</span><span class="o">`</span><span class="p">;</span>
+
+<span class="n">USE</span> <span class="o">`</span><span class="n">mybatis</span><span class="o">`</span><span class="p">;</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">;</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="k">user</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">pwd</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="k">insert</span>  <span class="k">into</span> <span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="o">`</span><span class="n">pwd</span><span class="o">`</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;狂神&#39;</span><span class="p">,</span><span class="s1">&#39;123456&#39;</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s1">&#39;张三&#39;</span><span class="p">,</span><span class="s1">&#39;abcdef&#39;</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span><span class="s1">&#39;987654&#39;</span><span class="p">);</span>
+</code></pre></div><p>2、导入MyBatis相关 jar 包</p>
+<ul>
+<li>GitHub上找</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>org.mybatis<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mybatis<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>3.5.2<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>mysql<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mysql-connector-java<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>5.1.47<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>3、编写MyBatis核心配置文件</p>
+<ul>
+<li>查看帮助文档</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE configuration
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Config 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-config.dtd&#34;&gt;</span>
+<span class="nt">&lt;configuration&gt;</span>
+   <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">/&gt;</span>
+           <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;com.mysql.jdbc.Driver&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf8&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;root&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;123456&#34;</span><span class="nt">/&gt;</span>
+           <span class="nt">&lt;/dataSource&gt;</span>
+       <span class="nt">&lt;/environment&gt;</span>
+   <span class="nt">&lt;/environments&gt;</span>
+   <span class="nt">&lt;mappers&gt;</span>
+       <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;com/kuang/dao/userMapper.xml&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/mappers&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></div><p>4、编写MyBatis工具类</p>
+<ul>
+<li>查看帮助文档</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">org.apache.ibatis.io.Resources</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSession</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.ibatis.session.SqlSessionFactoryBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MybatisUtils</span> <span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kd">static</span> <span class="n">SqlSessionFactory</span> <span class="n">sqlSessionFactory</span><span class="o">;</span>
+
+   <span class="kd">static</span> <span class="o">{</span>
+       <span class="k">try</span> <span class="o">{</span>
+           <span class="n">String</span> <span class="n">resource</span> <span class="o">=</span> <span class="s">&#34;mybatis-config.xml&#34;</span><span class="o">;</span>
+           <span class="n">InputStream</span> <span class="n">inputStream</span> <span class="o">=</span> <span class="n">Resources</span><span class="o">.</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="n">resource</span><span class="o">);</span>
+           <span class="n">sqlSessionFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SqlSessionFactoryBuilder</span><span class="o">().</span><span class="na">build</span><span class="o">(</span><span class="n">inputStream</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+           <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+  <span class="o">}</span>
+
+   <span class="c1">//获取SqlSession连接
+</span><span class="c1"></span>   <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">getSession</span><span class="o">(){</span>
+       <span class="k">return</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">();</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>5、创建实体类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+   
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>  <span class="c1">//id
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>   <span class="c1">//姓名
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">String</span> <span class="n">pwd</span><span class="o">;</span>   <span class="c1">//密码
+</span><span class="c1"></span>   
+   <span class="c1">//构造,有参,无参
+</span><span class="c1"></span>   <span class="c1">//set/get
+</span><span class="c1"></span>   <span class="c1">//toString()
+</span><span class="c1"></span>   
+<span class="o">}</span>
+</code></pre></div><p>6、编写Mapper接口类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">com.kuang.pojo.User</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserMapper</span> <span class="o">{</span>
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">selectUser</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>7、编写Mapper.xml配置文件</p>
+<ul>
+<li>namespace 十分重要，不能写错！</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.dao.UserMapper&#34;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUser&#34;</span> <span class="na">resultType=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span><span class="nt">&gt;</span>
+  select * from user
+ <span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><p>8、编写测试类</p>
+<ul>
+<li>Junit 包测试</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyTest</span> <span class="o">{</span>
+   <span class="nd">@Test</span>
+   <span class="kd">public</span> <span class="kt">void</span> <span class="nf">selectUser</span><span class="o">()</span> <span class="o">{</span>
+       <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+       <span class="c1">//方法一:
+</span><span class="c1"></span>       <span class="c1">//List&lt;User&gt; users = session.selectList(&#34;com.kuang.mapper.UserMapper.selectUser&#34;);
+</span><span class="c1"></span>       <span class="c1">//方法二:
+</span><span class="c1"></span>       <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+       <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUser</span><span class="o">();</span>
+
+       <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">:</span> <span class="n">users</span><span class="o">){</span>
+           <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+      <span class="o">}</span>
+       <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>9、运行测试，成功的查询出来的我们的数据，ok！</p>
+<h2 id="问题说明">问题说明</h2>
+<p><strong>可能出现问题说明：Maven静态资源过滤问题</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;resources&gt;</span>
+   <span class="nt">&lt;resource&gt;</span>
+       <span class="nt">&lt;directory&gt;</span>src/main/java<span class="nt">&lt;/directory&gt;</span>
+       <span class="nt">&lt;includes&gt;</span>
+           <span class="nt">&lt;include&gt;</span>**/*.properties<span class="nt">&lt;/include&gt;</span>
+           <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+       <span class="nt">&lt;/includes&gt;</span>
+       <span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+   <span class="nt">&lt;/resource&gt;</span>
+   <span class="nt">&lt;resource&gt;</span>
+       <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+       <span class="nt">&lt;includes&gt;</span>
+           <span class="nt">&lt;include&gt;</span>**/*.properties<span class="nt">&lt;/include&gt;</span>
+           <span class="nt">&lt;include&gt;</span>**/*.xml<span class="nt">&lt;/include&gt;</span>
+       <span class="nt">&lt;/includes&gt;</span>
+       <span class="nt">&lt;filtering&gt;</span>false<span class="nt">&lt;/filtering&gt;</span>
+   <span class="nt">&lt;/resource&gt;</span>
+<span class="nt">&lt;/resources&gt;</span>
+</code></pre></div><blockquote>
+<p>namespace</p>
+</blockquote>
+<ol>
+<li>将上面案例中的UserMapper接口改名为 UserDao；</li>
+<li>将UserMapper.xml中的namespace改为为UserDao的路径 .</li>
+<li>再次测试</li>
+</ol>
+<p><strong>结论：</strong></p>
+<p>配置文件中namespace中的名称为对应Mapper接口或者Dao接口的完整包名,必须一致！</p>
+<blockquote>
+<p>select</p>
+</blockquote>
+<ul>
+<li>
+<p>select标签是mybatis中最常用的标签之一</p>
+</li>
+<li>
+<p>select语句有很多属性可以详细配置每一条SQL语句</p>
+</li>
+<li>
+<ul>
+<li>SQL语句返回值类型。【完整的类名或者别名】</li>
+<li>传入SQL语句的参数类型 。【万能的Map，可以多尝试使用】</li>
+<li>命名空间中唯一的标识符</li>
+<li>接口中的方法名与映射文件中的SQL语句ID 一一对应</li>
+<li>id</li>
+<li>parameterType</li>
+<li>resultType</li>
+</ul>
+</li>
+</ul>
+<p><strong>需求：根据id查询用户</strong></p>
+<p>1、在UserMapper中添加对应方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserMapper</span> <span class="o">{</span>
+   <span class="c1">//查询全部用户
+</span><span class="c1"></span>   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">selectUser</span><span class="o">();</span>
+   <span class="c1">//根据id查询用户
+</span><span class="c1"></span>   <span class="n">User</span> <span class="nf">selectUserById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div><p>2、在UserMapper.xml中添加Select语句</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;</span><span class="n">select</span> <span class="n">id</span><span class="o">=</span><span class="s">&#34;selectUserById&#34;</span> <span class="n">resultType</span><span class="o">=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span><span class="o">&gt;</span>
+<span class="n">select</span> <span class="o">*</span> <span class="n">from</span> <span class="n">user</span> <span class="n">where</span> <span class="n">id</span> <span class="o">=</span> <span class="err">#</span><span class="o">{</span><span class="n">id</span><span class="o">}</span>
+<span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
+</code></pre></div><p>3、测试类中测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">tsetSelectUserById</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>  <span class="c1">//获取SqlSession连接
+</span><span class="c1"></span>   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>课堂练习</strong>：根据 密码 和 名字 查询用户</p>
+<p>思路一：直接在方法中传递参数</p>
+<p>1、在接口方法的参数前加 @Param属性</p>
+<p>2、Sql语句编写的时候，直接取@Param中设置的值即可，不需要单独设置参数类型</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//通过密码和名字查询用户
+</span><span class="c1"></span><span class="n">User</span> <span class="nf">selectUserByNP</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">username</span><span class="o">,</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;pwd&#34;</span><span class="o">)</span> <span class="n">String</span> <span class="n">pwd</span><span class="o">);</span>
+
+<span class="cm">/*
+</span><span class="cm">   &lt;select id=&#34;selectUserByNP&#34; resultType=&#34;com.kuang.pojo.User&#34;&gt;
+</span><span class="cm">     select * from user where name = #{username} and pwd = #{pwd}
+</span><span class="cm">   &lt;/select&gt;
+</span><span class="cm">*/</span>
+</code></pre></div><p>思路二：使用万能的Map</p>
+<p>1、在接口方法中，参数直接传递Map；</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">User</span> <span class="nf">selectUserByNP2</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>2、编写sql语句的时候，需要传递参数类型，参数类型为map</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="o">&lt;</span><span class="n">select</span> <span class="n">id</span><span class="o">=</span><span class="s">&#34;selectUserByNP2&#34;</span> <span class="n">parameterType</span><span class="o">=</span><span class="s">&#34;map&#34;</span> <span class="n">resultType</span><span class="o">=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span><span class="o">&gt;</span>
+<span class="n">select</span> <span class="o">*</span> <span class="n">from</span> <span class="n">user</span> <span class="n">where</span> <span class="n">name</span> <span class="o">=</span> <span class="err">#</span><span class="o">{</span><span class="n">username</span><span class="o">}</span> <span class="n">and</span> <span class="n">pwd</span> <span class="o">=</span> <span class="err">#</span><span class="o">{</span><span class="n">pwd</span><span class="o">}</span>
+<span class="o">&lt;/</span><span class="n">select</span><span class="o">&gt;</span>
+</code></pre></div><p>3、在使用方法的时候，Map的 key 为 sql中取的值即可，没有顺序要求！</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;username&#34;</span><span class="o">,</span><span class="s">&#34;小明&#34;</span><span class="o">);</span>
+<span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;pwd&#34;</span><span class="o">,</span><span class="s">&#34;123456&#34;</span><span class="o">);</span>
+<span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUserByNP2</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>总结：如果参数过多，我们可以考虑直接使用Map实现，如果参数比较少，直接传递参数即可</p>
+<h2 id="insert">insert</h2>
+<p>我们一般使用insert标签进行插入操作，它的配置和select标签差不多！</p>
+<p><strong>需求：给数据库增加一个用户</strong></p>
+<p>1、在UserMapper接口中添加对应的方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//添加一个用户
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">addUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</code></pre></div><p>2、在UserMapper.xml中添加insert语句</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;addUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span><span class="nt">&gt;</span>
+    insert into user (id,name,pwd) values (#{id},#{name},#{pwd})
+<span class="nt">&lt;/insert&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">5</span><span class="o">,</span><span class="s">&#34;王五&#34;</span><span class="o">,</span><span class="s">&#34;zxcvbn&#34;</span><span class="o">);</span>
+   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">addUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span> <span class="c1">//提交事务,重点!不写的话不会提交到数据库
+</span><span class="c1"></span>   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>注意点：增、删、改操作需要提交事务！</strong></p>
+<p>**
+**</p>
+<h2 id="update">update</h2>
+<p>我们一般使用update标签进行更新操作，它的配置和select标签差不多！</p>
+<p><strong>需求：修改用户的信息</strong></p>
+<p>1、同理，编写接口方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//修改一个用户
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">updateUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</code></pre></div><p>2、编写对应的配置文件SQL</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;updateUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span><span class="nt">&gt;</span>
+  update user set name=#{name},pwd=#{pwd} where id = #{id}
+<span class="nt">&lt;/update&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdateUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">user</span><span class="o">.</span><span class="na">setPwd</span><span class="o">(</span><span class="s">&#34;asdfgh&#34;</span><span class="o">);</span>
+   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">updateUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span> <span class="c1">//提交事务,重点!不写的话不会提交到数据库
+</span><span class="c1"></span>   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="delete">delete</h2>
+<p>我们一般使用delete标签进行删除操作，它的配置和select标签差不多！</p>
+<p><strong>需求：根据id删除一个用户</strong></p>
+<p>1、同理，编写接口方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">//根据id删除用户
+int deleteUser(int id);
+</code></pre></div><p>2、编写对应的配置文件SQL</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;delete</span> <span class="na">id=</span><span class="s">&#34;deleteUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;int&#34;</span><span class="nt">&gt;</span>
+  delete from user where id = #{id}
+<span class="nt">&lt;/delete&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDeleteUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">(</span><span class="n">5</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span> <span class="c1">//提交事务,重点!不写的话不会提交到数据库
+</span><span class="c1"></span>   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>小结：</strong></p>
+<ul>
+<li>所有的增删改操作都需要提交事务！</li>
+<li>接口所有的普通参数，尽量都写上@Param参数，尤其是多个参数时，必须写上！</li>
+<li>有时候根据业务的需求，可以考虑使用map传递参数！</li>
+<li>为了规范操作，在SQL的配置文件中，我们尽量将Parameter参数和resultType都写上！</li>
+</ul>
+<h2 id="思考题">思考题</h2>
+<p><strong>模糊查询like语句该怎么写?</strong></p>
+<p>第1种：在Java代码中添加sql通配符。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">string wildcardname = “%smi%”;
+list<span class="nt">&lt;name&gt;</span> names = mapper.selectlike(wildcardname);
+
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">”selectlike”</span><span class="nt">&gt;</span>
+select * from foo where bar like #{value}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>第2种：在sql语句中拼接通配符，会引起sql注入</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">string wildcardname = “smi”;
+list<span class="nt">&lt;name&gt;</span> names = mapper.selectlike(wildcardname);
+
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">”selectlike”</span><span class="nt">&gt;</span>
+    select * from foo where bar like &#34;%&#34;#{value}&#34;%&#34;
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><h2 id="配置解析">配置解析</h2>
+<h3 id="核心配置文件">核心配置文件</h3>
+<ul>
+<li>mybatis-config.xml 系统核心配置文件</li>
+<li>MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置和属性信息。</li>
+<li>能配置的内容如下：</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-apl" data-lang="apl"><span class="nv">configuration</span><span class="err">（配置）</span>
+<span class="nv">properties</span><span class="err">（属性）</span>
+<span class="nv">settings</span><span class="err">（设置）</span>
+<span class="nv">typeAliases</span><span class="err">（类型别名）</span>
+<span class="nv">typeHandlers</span><span class="err">（类型处理器）</span>
+<span class="nv">objectFactory</span><span class="err">（对象工厂）</span>
+<span class="nv">plugins</span><span class="err">（插件）</span>
+<span class="nv">environments</span><span class="err">（环境配置）</span>
+<span class="nv">environment</span><span class="err">（环境变量）</span>
+<span class="nv">transactionManager</span><span class="err">（事务管理器）</span>
+<span class="nv">dataSource</span><span class="err">（数据源）</span>
+<span class="nv">databaseIdProvider</span><span class="err">（数据库厂商标识）</span>
+<span class="nv">mappers</span><span class="err">（映射器）</span>
+<span class="o">&lt;!--</span> <span class="err">注意元素节点的顺序！顺序不对会报错</span> <span class="o">--&gt;</span>
+</code></pre></div><p>我们可以阅读 mybatis-config.xml 上面的dtd的头文件！</p>
+<blockquote>
+<p>environments元素</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;...&#34;</span> <span class="na">value=</span><span class="s">&#34;...&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/transactionManager&gt;</span>
+   <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;${driver}&#34;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;${url}&#34;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;${username}&#34;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;${password}&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/dataSource&gt;</span>
+ <span class="nt">&lt;/environment&gt;</span>
+<span class="nt">&lt;/environments&gt;</span>
+</code></pre></div><ul>
+<li>
+<p>配置MyBatis的多套运行环境，将SQL映射到多个不同的数据库上，必须指定其中一个为默认运行环境（通过default指定）</p>
+</li>
+<li>
+<p>子元素节点：<strong>environment</strong></p>
+</li>
+<li>
+<ul>
+<li>
+<p>dataSource 元素使用标准的 JDBC 数据源接口来配置 JDBC 连接对象的资源。</p>
+</li>
+<li>
+<p>数据源是必须配置的。</p>
+</li>
+<li>
+<p>有三种内建的数据源类型</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">type</span><span class="o">=</span><span class="s">&#34;[UNPOOLED|POOLED|JNDI]&#34;</span><span class="err">）</span>
+</code></pre></div></li>
+<li>
+<p>unpooled：这个数据源的实现只是每次被请求时打开和关闭连接。</p>
+</li>
+<li>
+<p><strong>pooled</strong>：这种数据源的实现利用“池”的概念将 JDBC 连接对象组织起来 , 这是一种使得并发 Web 应用快速响应请求的流行处理方式。</p>
+</li>
+<li>
+<p>jndi：这个数据源的实现是为了能在如 Spring 或应用服务器这类容器中使用，容器可以集中或在外部配置数据源，然后放置一个 JNDI 上下文的引用。</p>
+</li>
+<li>
+<p>数据源也有很多第三方的实现，比如dbcp，c3p0，druid等等&hellip;.</p>
+</li>
+<li>
+<p>详情：点击查看官方文档</p>
+</li>
+<li>
+<p>这两种事务管理器类型都不需要设置任何属性。</p>
+</li>
+<li>
+<p>具体的一套环境，通过设置id进行区别，id保证唯一！</p>
+</li>
+<li>
+<p>子元素节点：transactionManager - [ 事务管理器 ]</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 语法 --&gt;</span>
+<span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;[ JDBC | MANAGED ]&#34;</span><span class="nt">/&gt;</span>
+</code></pre></div></li>
+<li>
+<p>子元素节点：<strong>数据源（dataSource）</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="mappers元素">mappers元素</h2>
+<p><strong>mappers</strong></p>
+<ul>
+<li>映射器 : 定义映射SQL语句文件</li>
+<li>既然 MyBatis 的行为其他元素已经配置完了，我们现在就要定义 SQL 映射语句了。但是首先我们需要告诉 MyBatis 到哪里去找到这些语句。Java 在自动查找这方面没有提供一个很好的方法，所以最佳的方式是告诉 MyBatis 到哪里去找映射文件。你可以使用相对于类路径的资源引用， 或完全限定资源定位符（包括 <code>file:///</code> 的 URL），或类名和包名等。映射器是MyBatis中最核心的组件之一，在MyBatis 3之前，只支持xml映射器，即：所有的SQL语句都必须在xml文件中配置。而从MyBatis 3开始，还支持接口映射器，这种映射器方式允许以Java代码的方式注解定义SQL语句，非常简洁。</li>
+</ul>
+<p><strong>引入资源方式</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 使用相对于类路径的资源引用 --&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+ <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;org/mybatis/builder/PostMapper.xml&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+<span class="c">&lt;!-- 使用完全限定资源定位符（URL） --&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+ <span class="nt">&lt;mapper</span> <span class="na">url=</span><span class="s">&#34;file:///var/mappers/AuthorMapper.xml&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+<span class="c">&lt;!--
+</span><span class="c">使用映射器接口实现类的完全限定类名
+</span><span class="c">需要配置文件名称和接口名称一致，并且位于同一目录下
+</span><span class="c">--&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+ <span class="nt">&lt;mapper</span> <span class="na">class=</span><span class="s">&#34;org.mybatis.builder.AuthorMapper&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+<span class="c">&lt;!--
+</span><span class="c">将包内的映射器接口实现全部注册为映射器
+</span><span class="c">但是需要配置文件名称和接口名称一致，并且位于同一目录下
+</span><span class="c">--&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+ <span class="nt">&lt;package</span> <span class="na">name=</span><span class="s">&#34;org.mybatis.builder&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+</code></pre></div><h2 id="mapper文件"><strong>Mapper文件</strong></h2>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.UserMapper&#34;</span><span class="nt">&gt;</span>
+   
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><ul>
+<li>
+<p>namespace中文意思：命名空间，作用如下：</p>
+</li>
+<li>
+<ul>
+<li>namespace的命名必须跟某个接口同名</li>
+<li>接口中的方法与映射文件中sql语句id应该一一对应</li>
+</ul>
+</li>
+<li>
+<ol>
+<li>namespace和子元素的id联合保证唯一  , 区别不同的mapper</li>
+<li>绑定DAO接口</li>
+<li>namespace命名规则 : 包名+类名</li>
+</ol>
+</li>
+</ul>
+<p>MyBatis 的真正强大在于它的映射语句，这是它的魔力所在。由于它的异常强大，映射器的 XML 文件就显得相对简单。如果拿它跟具有相同功能的 JDBC 代码进行对比，你会立即发现省掉了将近 95% 的代码。MyBatis 为聚焦于 SQL 而构建，以尽可能地为你减少麻烦。</p>
+<h2 id="properties优化">Properties优化</h2>
+<p>数据库这些属性都是可外部配置且可动态替换的，既可以在典型的 Java 属性文件中配置，亦可通过 properties 元素的子元素来传递。具体的官方文档</p>
+<p>我们来优化我们的配置文件</p>
+<p>第一步 ; 在资源目录下新建一个db.properties</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/mybatis?useSSL=true<span class="err">&amp;</span>useUnicode=true<span class="err">&amp;</span>characterEncoding=utf8
+username=root
+password=123456
+</code></pre></div><p>第二步 : 将文件导入properties 配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;configuration&gt;</span>
+   <span class="c">&lt;!--导入properties文件--&gt;</span>
+   <span class="nt">&lt;properties</span> <span class="na">resource=</span><span class="s">&#34;db.properties&#34;</span><span class="nt">/&gt;</span>
+
+   <span class="nt">&lt;environments</span> <span class="na">default=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;environment</span> <span class="na">id=</span><span class="s">&#34;development&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;transactionManager</span> <span class="na">type=</span><span class="s">&#34;JDBC&#34;</span><span class="nt">/&gt;</span>
+           <span class="nt">&lt;dataSource</span> <span class="na">type=</span><span class="s">&#34;POOLED&#34;</span><span class="nt">&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;driver&#34;</span> <span class="na">value=</span><span class="s">&#34;${driver}&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;url&#34;</span> <span class="na">value=</span><span class="s">&#34;${url}&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;username&#34;</span> <span class="na">value=</span><span class="s">&#34;${username}&#34;</span><span class="nt">/&gt;</span>
+               <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;password&#34;</span> <span class="na">value=</span><span class="s">&#34;${password}&#34;</span><span class="nt">/&gt;</span>
+           <span class="nt">&lt;/dataSource&gt;</span>
+       <span class="nt">&lt;/environment&gt;</span>
+   <span class="nt">&lt;/environments&gt;</span>
+   <span class="nt">&lt;mappers&gt;</span>
+       <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/UserMapper.xml&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/mappers&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</code></pre></div><p>更多操作，可以查看官方文档！【演示带领学习】</p>
+<ul>
+<li>配置文件优先级问题</li>
+<li>新特性：使用占位符</li>
+</ul>
+<h2 id="typealiases优化">typeAliases优化</h2>
+<p>类型别名是为 Java 类型设置一个短的名字。它只和 XML 配置有关，存在的意义仅在于用来减少类完全限定名的冗余。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--配置别名,注意顺序--&gt;</span>
+<span class="nt">&lt;typeAliases&gt;</span>
+   <span class="nt">&lt;typeAlias</span> <span class="na">type=</span><span class="s">&#34;com.kuang.pojo.User&#34;</span> <span class="na">alias=</span><span class="s">&#34;User&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/typeAliases&gt;</span>
+</code></pre></div><p>当这样配置时，<code>User</code>可以用在任何使用<code>com.kuang.pojo.User</code>的地方。</p>
+<p>也可以指定一个包名，MyBatis 会在包名下面搜索需要的 Java Bean，比如:</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;typeAliases&gt;</span>
+   <span class="nt">&lt;package</span> <span class="na">name=</span><span class="s">&#34;com.kuang.pojo&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/typeAliases&gt;</span>
+</code></pre></div><p>每一个在包 <code>com.kuang.pojo</code> 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。</p>
+<p>若有注解，则别名为其注解值。见下面的例子：</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Alias</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span>
+</code></pre></div><p>去官网查看一下Mybatis默认的一些类型别名！</p>
+<h2 id="其他配置浏览">其他配置浏览</h2>
+<p><strong>设置</strong></p>
+<ul>
+<li>
+<p>设置（settings）相关 =&gt; 查看帮助文档</p>
+</li>
+<li>
+<ul>
+<li>懒加载</li>
+<li>日志实现</li>
+<li>缓存开启关闭</li>
+</ul>
+</li>
+<li>
+<p>一个配置完整的 settings 元素的示例如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-fallback" data-lang="fallback">&lt;settings&gt;
+ &lt;setting name=&#34;cacheEnabled&#34; value=&#34;true&#34;/&gt;
+ &lt;setting name=&#34;lazyLoadingEnabled&#34; value=&#34;true&#34;/&gt;
+ &lt;setting name=&#34;multipleResultSetsEnabled&#34; value=&#34;true&#34;/&gt;
+ &lt;setting name=&#34;useColumnLabel&#34; value=&#34;true&#34;/&gt;
+ &lt;setting name=&#34;useGeneratedKeys&#34; value=&#34;false&#34;/&gt;
+ &lt;setting name=&#34;autoMappingBehavior&#34; value=&#34;PARTIAL&#34;/&gt;
+ &lt;setting name=&#34;autoMappingUnknownColumnBehavior&#34; value=&#34;WARNING&#34;/&gt;
+ &lt;setting name=&#34;defaultExecutorType&#34; value=&#34;SIMPLE&#34;/&gt;
+ &lt;setting name=&#34;defaultStatementTimeout&#34; value=&#34;25&#34;/&gt;
+ &lt;setting name=&#34;defaultFetchSize&#34; value=&#34;100&#34;/&gt;
+ &lt;setting name=&#34;safeRowBoundsEnabled&#34; value=&#34;false&#34;/&gt;
+ &lt;setting name=&#34;mapUnderscoreToCamelCase&#34; value=&#34;false&#34;/&gt;
+ &lt;setting name=&#34;localCacheScope&#34; value=&#34;SESSION&#34;/&gt;
+ &lt;setting name=&#34;jdbcTypeForNull&#34; value=&#34;OTHER&#34;/&gt;
+ &lt;setting name=&#34;lazyLoadTriggerMethods&#34; value=&#34;equals,clone,hashCode,toString&#34;/&gt;
+&lt;/settings&gt;
+</code></pre></div></li>
+</ul>
+<p><strong>类型处理器</strong></p>
+<ul>
+<li>无论是 MyBatis 在预处理语句（PreparedStatement）中设置一个参数时，还是从结果集中取出一个值时， 都会用类型处理器将获取的值以合适的方式转换成 Java 类型。</li>
+<li>你可以重写类型处理器或创建你自己的类型处理器来处理不支持的或非标准的类型。【了解即可】</li>
+</ul>
+<p><strong>对象工厂</strong></p>
+<ul>
+<li>MyBatis 每次创建结果对象的新实例时，它都会使用一个对象工厂（ObjectFactory）实例来完成。</li>
+<li>默认的对象工厂需要做的仅仅是实例化目标类，要么通过默认构造方法，要么在参数映射存在的时候通过有参构造方法来实例化。</li>
+<li>如果想覆盖对象工厂的默认行为，则可以通过创建自己的对象工厂来实现。【了解即可】</li>
+</ul>
+<h2 id="生命周期和作用域">生命周期和作用域</h2>
+<p><strong>作用域（Scope）和生命周期</strong></p>
+<p>理解我们目前已经讨论过的不同作用域和生命周期类是至关重要的，因为错误的使用会导致非常严重的并发问题。</p>
+<p>我们可以先画一个流程图，分析一下Mybatis的执行过程！</p>
+<p><img src="/images/Mybatis11.png" alt="图片"></p>
+<p><strong>作用域理解</strong></p>
+<ul>
+<li>SqlSessionFactoryBuilder 的作用在于创建 SqlSessionFactory，创建成功后，SqlSessionFactoryBuilder 就失去了作用，所以它只能存在于创建 SqlSessionFactory 的方法中，而不要让其长期存在。因此 <strong>SqlSessionFactoryBuilder 实例的最佳作用域是方法作用域</strong>（也就是局部方法变量）。</li>
+<li>SqlSessionFactory 可以被认为是一个数据库连接池，它的作用是创建 SqlSession 接口对象。因为 MyBatis 的本质就是 Java 对数据库的操作，所以 SqlSessionFactory 的生命周期存在于整个 MyBatis 的应用之中，所以一旦创建了 SqlSessionFactory，就要长期保存它，直至不再使用 MyBatis 应用，所以可以认为 SqlSessionFactory 的生命周期就等同于 MyBatis 的应用周期。</li>
+<li>由于 SqlSessionFactory 是一个对数据库的连接池，所以它占据着数据库的连接资源。如果创建多个 SqlSessionFactory，那么就存在多个数据库连接池，这样不利于对数据库资源的控制，也会导致数据库连接资源被消耗光，出现系统宕机等情况，所以尽量避免发生这样的情况。</li>
+<li>因此在一般的应用中我们往往希望 SqlSessionFactory 作为一个单例，让它在应用中被共享。所以说 <strong>SqlSessionFactory 的最佳作用域是应用作用域。</strong></li>
+<li>如果说 SqlSessionFactory 相当于数据库连接池，那么 SqlSession 就相当于一个数据库连接（Connection 对象），你可以在一个事务里面执行多条 SQL，然后通过它的 commit、rollback 等方法，提交或者回滚事务。所以它应该存活在一个业务请求中，处理完整个请求后，应该关闭这条连接，让它归还给 SqlSessionFactory，否则数据库资源就很快被耗费精光，系统就会瘫痪，所以用 try&hellip;catch&hellip;finally&hellip; 语句来保证其正确关闭。</li>
+<li><strong>所以 SqlSession 的最佳的作用域是请求或方法作用域。</strong></li>
+</ul>
+<p><img src="/images/Mybatis10.png" alt="图片"></p>
+<h2 id="查询为null问题">查询为null问题</h2>
+<p><strong>要解决的问题：属性名和字段名不一致</strong></p>
+<p>环境：新建一个项目，将之前的项目拷贝过来</p>
+<p>1、查看之前的数据库的字段名</p>
+<p><img src="/images/Mybatis9.png" alt="图片"></p>
+<p>2、Java中的实体类设计</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>  <span class="c1">//id
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>   <span class="c1">//姓名
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">String</span> <span class="n">password</span><span class="o">;</span>   <span class="c1">//密码和数据库不一样！
+</span><span class="c1"></span>   
+   <span class="c1">//构造
+</span><span class="c1"></span>   <span class="c1">//set/get
+</span><span class="c1"></span>   <span class="c1">//toString()
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>3、接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//根据id查询用户
+</span><span class="c1"></span><span class="n">User</span> <span class="nf">selectUserById</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>4、mapper映射文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUserById&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+  select * from user where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>5、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectUserById</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>  <span class="c1">//获取SqlSession连接
+</span><span class="c1"></span>   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>结果:</strong></p>
+<ul>
+<li>User{id=1, name=&lsquo;狂神&rsquo;, password=&lsquo;null&rsquo;}</li>
+<li>查询出来发现 password 为空 . 说明出现了问题！</li>
+</ul>
+<p><strong>分析：</strong></p>
+<ul>
+<li>
+<p>select * from user where id = #{id} 可以看做</p>
+<p>select  id,name,pwd  from user where id = #{id}</p>
+</li>
+<li>
+<p>mybatis会根据这些查询的列名(会将列名转化为小写,数据库不区分大小写) , 去对应的实体类中查找相应列名的set方法设值 , 由于找不到setPwd() , 所以password返回null ; 【自动映射】</p>
+</li>
+</ul>
+<h2 id="解决方案">解决方案</h2>
+<p>方案一：为列名指定别名 , 别名和java实体类的属性名一致 .</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUserById&#34;</span> <span class="na">resultType=</span><span class="s">&#34;User&#34;</span><span class="nt">&gt;</span>
+  select id , name , pwd as password from user where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p><strong>方案二：使用结果集映射-&gt;ResultMap</strong> 【推荐】</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;UserMap&#34;</span> <span class="na">type=</span><span class="s">&#34;User&#34;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!-- id为主键 --&gt;</span>
+   <span class="nt">&lt;id</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span><span class="nt">/&gt;</span>
+   <span class="c">&lt;!-- column是数据库表的列名 , property是对应实体类的属性名 --&gt;</span>
+   <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;name&#34;</span> <span class="na">property=</span><span class="s">&#34;name&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;pwd&#34;</span> <span class="na">property=</span><span class="s">&#34;password&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUserById&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;UserMap&#34;</span><span class="nt">&gt;</span>
+  select id , name , pwd from user where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><h2 id="resultmap">ResultMap</h2>
+<p><strong>自动映射</strong></p>
+<ul>
+<li><code>resultMap</code> 元素是 MyBatis 中最重要最强大的元素。它可以让你从 90% 的 JDBC <code>ResultSets</code> 数据提取代码中解放出来。</li>
+<li>实际上，在为一些比如连接的复杂语句编写映射代码的时候，一份 <code>resultMap</code> 能够代替实现同等功能的长达数千行的代码。</li>
+<li>ResultMap 的设计思想是，对于简单的语句根本不需要配置显式的结果映射，而对于复杂一点的语句只需要描述它们的关系就行了。</li>
+</ul>
+<p>你已经见过简单映射语句的示例了，但并没有显式指定 <code>resultMap</code>。比如：</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUserById&#34;</span> <span class="na">resultType=</span><span class="s">&#34;map&#34;</span><span class="nt">&gt;</span>
+select id , name , pwd
+  from user
+  where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>上述语句只是简单地将所有的列映射到 <code>HashMap</code> 的键上，这由 <code>resultType</code> 属性指定。虽然在大部分情况下都够用，但是 HashMap 不是一个很好的模型。你的程序更可能会使用 JavaBean 或 POJO（Plain Old Java Objects，普通老式 Java 对象）作为模型。</p>
+<p><code>ResultMap</code> 最优秀的地方在于，虽然你已经对它相当了解了，但是根本就不需要显式地用到他们。</p>
+<p><strong>手动映射</strong></p>
+<p>1、返回值类型为resultMap</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUserById&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;UserMap&#34;</span><span class="nt">&gt;</span>
+  select id , name , pwd from user where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>2、编写resultMap，实现手动映射！</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;UserMap&#34;</span> <span class="na">type=</span><span class="s">&#34;User&#34;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!-- id为主键 --&gt;</span>
+   <span class="nt">&lt;id</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span><span class="nt">/&gt;</span>
+   <span class="c">&lt;!-- column是数据库表的列名 , property是对应实体类的属性名 --&gt;</span>
+   <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;name&#34;</span> <span class="na">property=</span><span class="s">&#34;name&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;result</span> <span class="na">column=</span><span class="s">&#34;pwd&#34;</span> <span class="na">property=</span><span class="s">&#34;password&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+</code></pre></div><p>如果世界总是这么简单就好了。但是肯定不是的，数据库中，存在一对多，多对一的情况，我们之后会使用到一些高级的结果集映射，association，collection这些，我们将在之后讲解，今天你们需要把这些知识都消化掉才是最重要的！理解结果集映射的这个概念！</p>
+<p>分页的几种方式</p>
+<h2 id="日志工厂">日志工厂</h2>
+<p>思考：我们在测试SQL的时候，要是能够在控制台输出 SQL 的话，是不是就能够有更快的排错效率？</p>
+<p>如果一个 数据库相关的操作出现了问题，我们可以根据输出的SQL语句快速排查问题。</p>
+<p>对于以往的开发过程，我们会经常使用到debug模式来调节，跟踪我们的代码执行过程。但是现在使用Mybatis是基于接口，配置文件的源代码执行过程。因此，我们必须选择日志工具来作为我们开发，调节程序的工具。</p>
+<p>Mybatis内置的日志工厂提供日志功能，具体的日志实现有以下几种工具：</p>
+<ul>
+<li>SLF4J</li>
+<li>Apache Commons Logging</li>
+<li>Log4j 2</li>
+<li>Log4j</li>
+<li>JDK logging</li>
+</ul>
+<p>具体选择哪个日志实现工具由MyBatis的内置日志工厂确定。它会使用最先找到的（按上文列举的顺序查找）。如果一个都未找到，日志功能就会被禁用。</p>
+<p><strong>标准日志实现</strong></p>
+<p>指定 MyBatis 应该使用哪个日志记录实现。如果此设置不存在，则会自动发现日志记录实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+       <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;logImpl&#34;</span> <span class="na">value=</span><span class="s">&#34;STDOUT_LOGGING&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div><p>测试，可以看到控制台有大量的输出！我们可以通过这些输出来判断程序到底哪里出了Bug</p>
+<blockquote>
+<p>Log4j</p>
+</blockquote>
+<p><strong>简介：</strong></p>
+<ul>
+<li>Log4j是Apache的一个开源项目</li>
+<li>通过使用Log4j，我们可以控制日志信息输送的目的地：控制台，文本，GUI组件&hellip;.</li>
+<li>我们也可以控制每一条日志的输出格式；</li>
+<li>通过定义每一条日志信息的级别，我们能够更加细致地控制日志的生成过程。最令人感兴趣的就是，这些可以通过一个配置文件来灵活地进行配置，而不需要修改应用的代码。</li>
+</ul>
+<p><strong>使用步骤：</strong></p>
+<p>1、导入log4j的包</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>1.2.17<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>2、配置文件编写</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="err">#</span><span class="n">将等级为DEBUG的日志信息输出到console和file这两个目的地</span><span class="err">，</span><span class="n">console和file的定义在下面的代码</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">rootLogger</span><span class="o">=</span><span class="n">DEBUG</span><span class="o">,</span><span class="n">console</span><span class="o">,</span><span class="n">file</span>
+
+<span class="err">#</span><span class="n">控制台输出的相关设置</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">console</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">ConsoleAppender</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">console</span><span class="o">.</span><span class="na">Target</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">out</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">console</span><span class="o">.</span><span class="na">Threshold</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">console</span><span class="o">.</span><span class="na">layout</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">PatternLayout</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">console</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">ConversionPattern</span><span class="o">=[%</span><span class="n">c</span><span class="o">]-%</span><span class="n">m</span><span class="o">%</span><span class="n">n</span>
+
+<span class="err">#</span><span class="n">文件输出的相关设置</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span> <span class="o">=</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">RollingFileAppender</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span><span class="o">.</span><span class="na">File</span><span class="o">=./</span><span class="n">log</span><span class="o">/</span><span class="n">kuang</span><span class="o">.</span><span class="na">log</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span><span class="o">.</span><span class="na">MaxFileSize</span><span class="o">=</span><span class="n">10mb</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span><span class="o">.</span><span class="na">Threshold</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span><span class="o">.</span><span class="na">layout</span><span class="o">=</span><span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">log4j</span><span class="o">.</span><span class="na">PatternLayout</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">appender</span><span class="o">.</span><span class="na">file</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">ConversionPattern</span><span class="o">=[%</span><span class="n">p</span><span class="o">][%</span><span class="n">d</span><span class="o">{</span><span class="n">yy</span><span class="o">-</span><span class="n">MM</span><span class="o">-</span><span class="n">dd</span><span class="o">}][%</span><span class="n">c</span><span class="o">]%</span><span class="n">m</span><span class="o">%</span><span class="n">n</span>
+
+<span class="err">#</span><span class="n">日志输出级别</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">org</span><span class="o">.</span><span class="na">mybatis</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">sql</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">Statement</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">ResultSet</span><span class="o">=</span><span class="n">DEBUG</span>
+<span class="n">log4j</span><span class="o">.</span><span class="na">logger</span><span class="o">.</span><span class="na">java</span><span class="o">.</span><span class="na">sql</span><span class="o">.</span><span class="na">PreparedStatement</span><span class="o">=</span><span class="n">DEBUG</span>
+</code></pre></div><p>3、setting设置日志实现</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+   <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;logImpl&#34;</span> <span class="na">value=</span><span class="s">&#34;LOG4J&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+</code></pre></div><p>4、在程序中使用Log4j进行输出！</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//注意导包：org.apache.log4j.Logger
+</span><span class="c1"></span><span class="kd">static</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">MyTest</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">selectUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&#34;info：进入selectUser方法&#34;</span><span class="o">);</span>
+   <span class="n">logger</span><span class="o">.</span><span class="na">debug</span><span class="o">(</span><span class="s">&#34;debug：进入selectUser方法&#34;</span><span class="o">);</span>
+   <span class="n">logger</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;error: 进入selectUser方法&#34;</span><span class="o">);</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUser</span><span class="o">();</span>
+   <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">:</span> <span class="n">users</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+  <span class="o">}</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>5、测试，看控制台输出！</p>
+<ul>
+<li>使用Log4j 输出日志</li>
+<li>可以看到还生成了一个日志的文件 【需要修改file的日志级别】</li>
+</ul>
+<h2 id="limit实现分页">limit实现分页</h2>
+<p><strong>思考：为什么需要分页？</strong></p>
+<p>在学习mybatis等持久层框架的时候，会经常对数据进行增删改查操作，使用最多的是对数据库进行查询操作，如果查询大量数据的时候，我们往往使用分页进行查询，也就是每次处理小部分数据，这样对数据库压力就在可控范围内。</p>
+<p><strong>使用Limit实现分页</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span><span class="err">语法</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">LIMIT</span> <span class="n">stratIndex</span><span class="err">，</span><span class="n">pageSize</span>
+
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">LIMIT</span> <span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">;</span> <span class="o">//</span> <span class="err">检索记录行</span> <span class="mi">6</span><span class="o">-</span><span class="mi">15</span>  
+
+<span class="o">#</span><span class="err">为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为</span> <span class="o">-</span><span class="mi">1</span><span class="err">：</span>   
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">LIMIT</span> <span class="mi">95</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">//</span> <span class="err">检索记录行</span> <span class="mi">96</span><span class="o">-</span><span class="k">last</span><span class="p">.</span>  
+
+<span class="o">#</span><span class="err">如果只给定一个参数，它表示返回最大的记录行数目：</span>   
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="k">table</span> <span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span> <span class="o">//</span><span class="err">检索前</span> <span class="mi">5</span> <span class="err">个记录行</span>  
+
+<span class="o">#</span><span class="err">换句话说，</span><span class="k">LIMIT</span> <span class="n">n</span> <span class="err">等价于</span> <span class="k">LIMIT</span> <span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="err">。</span> 
+</code></pre></div><p><strong>步骤：</strong></p>
+<p>1、修改Mapper文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;selectUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+  select * from user limit #{startIndex},#{pageSize}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>2、Mapper接口，参数为map</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//选择全部用户实现分页
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">selectUser</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>3、在测试类中传入参数测试</p>
+<ul>
+<li>推断：起始位置 =  （当前页面 - 1 ） * 页面大小</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//分页查询 , 两个参数startIndex , pageSize
+</span><span class="c1"></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="kt">int</span> <span class="n">currentPage</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>  <span class="c1">//第几页
+</span><span class="c1"></span>   <span class="kt">int</span> <span class="n">pageSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>  <span class="c1">//每页显示几个
+</span><span class="c1"></span>   <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span><span class="n">Integer</span><span class="o">&gt;();</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;startIndex&#34;</span><span class="o">,(</span><span class="n">currentPage</span><span class="o">-</span><span class="n">1</span><span class="o">)*</span><span class="n">pageSize</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;pageSize&#34;</span><span class="o">,</span><span class="n">pageSize</span><span class="o">);</span>
+
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUser</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+   <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">:</span> <span class="n">users</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+  <span class="o">}</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="rowbounds分页">RowBounds分页</h2>
+<p>我们除了使用Limit在SQL层面实现分页，也可以使用RowBounds在Java代码层面实现分页，当然此种方式作为了解即可。我们来看下如何实现的！</p>
+<p><strong>步骤：</strong></p>
+<p>1、mapper接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//选择全部用户RowBounds实现分页
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">getUserByRowBounds</span><span class="o">();</span>
+</code></pre></div><p>2、mapper文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getUserByRowBounds&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+select * from user
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>3、测试类</p>
+<p>在这里，我们需要使用RowBounds类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUserByRowBounds</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+
+   <span class="kt">int</span> <span class="n">currentPage</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>  <span class="c1">//第几页
+</span><span class="c1"></span>   <span class="kt">int</span> <span class="n">pageSize</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span>  <span class="c1">//每页显示几个
+</span><span class="c1"></span>   <span class="n">RowBounds</span> <span class="n">rowBounds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RowBounds</span><span class="o">((</span><span class="n">currentPage</span><span class="o">-</span><span class="n">1</span><span class="o">)*</span><span class="n">pageSize</span><span class="o">,</span><span class="n">pageSize</span><span class="o">);</span>
+
+   <span class="c1">//通过session.**方法进行传递rowBounds，[此种方式现在已经不推荐使用了]
+</span><span class="c1"></span>   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="s">&#34;com.kuang.mapper.UserMapper.getUserByRowBounds&#34;</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="n">rowBounds</span><span class="o">);</span>
+
+   <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">:</span> <span class="n">users</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+  <span class="o">}</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="pagehelper">PageHelper</h2>
+<p><img src="/images/Mybatis8.png" alt="图片"></p>
+<p>了解即可，可以自己尝试使用</p>
+<p>官方文档：https://pagehelper.github.io/</p>
+<blockquote>
+<p>在MyBatisPlus中，我们也讲解到了分页实现，所以实现方式很多，看自己的理解和熟练程度进行掌握即可！</p>
+</blockquote>
+<blockquote>
+<p>面向接口编程</p>
+</blockquote>
+<ul>
+<li>大家之前都学过面向对象编程，也学习过接口，但在真正的开发中，很多时候我们会选择面向接口编程</li>
+<li><strong>根本原因 :  解耦 , 可拓展 , 提高复用 , 分层开发中 , 上层不用管具体的实现 , 大家都遵守共同的标准 , 使得开发变得容易 , 规范性更好</strong></li>
+<li>在一个面向对象的系统中，系统的各种功能是由许许多多的不同对象协作完成的。在这种情况下，各个对象内部是如何实现自己的,对系统设计人员来讲就不那么重要了；</li>
+<li>而各个对象之间的协作关系则成为系统设计的关键。小到不同类之间的通信，大到各模块之间的交互，在系统设计之初都是要着重考虑的，这也是系统设计的主要工作内容。面向接口编程就是指按照这种思想来编程。</li>
+</ul>
+<p><strong>关于接口的理解</strong></p>
+<ul>
+<li>
+<p>接口从更深层次的理解，应是定义（规范，约束）与实现（名实分离的原则）的分离。</p>
+</li>
+<li>
+<p>接口的本身反映了系统设计人员对系统的抽象理解。</p>
+</li>
+<li>
+<p>接口应有两类：</p>
+</li>
+<li>
+<ul>
+<li>第一类是对一个个体的抽象，它可对应为一个抽象体(abstract class)；</li>
+<li>第二类是对一个个体某一方面的抽象，即形成一个抽象面（interface）；</li>
+</ul>
+</li>
+<li>
+<p>一个体有可能有多个抽象面。抽象体与抽象面是有区别的。</p>
+</li>
+</ul>
+<p><strong>三个面向区别</strong></p>
+<ul>
+<li>
+<p>面向对象是指，我们考虑问题时，以对象为单位，考虑它的属性及方法 .</p>
+</li>
+<li>
+<p>面向过程是指，我们考虑问题时，以一个具体的流程（事务过程）为单位，考虑它的实现 .</p>
+</li>
+<li>
+<p>接口设计与非接口设计是针对复用技术而言的，与面向对象（过程）不是一个问题.更多的体现就是对系统整体的架构</p>
+</li>
+</ul>
+<h2 id="利用注解开发">利用注解开发</h2>
+<ul>
+<li>
+<p><strong>mybatis最初配置信息是基于 XML ,映射语句(SQL)也是定义在 XML 中的。而到MyBatis 3提供了新的基于注解的配置。不幸的是，Java 注解的的表达力和灵活性十分有限。最强大的 MyBatis 映射并不能用注解来构建</strong></p>
+</li>
+<li>
+<p>sql 类型主要分成 :</p>
+</li>
+<li>
+<ul>
+<li>@select ()</li>
+<li>@update ()</li>
+<li>@Insert ()</li>
+<li>@delete ()</li>
+</ul>
+</li>
+</ul>
+<p>**注意：**利用注解开发就不需要mapper.xml映射文件了 .</p>
+<p>1、我们在我们的接口中添加注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//查询全部用户
+</span><span class="c1"></span><span class="nd">@Select</span><span class="o">(</span><span class="s">&#34;select id,name,pwd password from user&#34;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="nf">getAllUser</span><span class="o">();</span>
+</code></pre></div><p>2、在mybatis的核心配置文件中注入</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--使用class绑定接口--&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+   <span class="nt">&lt;mapper</span> <span class="na">class=</span><span class="s">&#34;com.kuang.mapper.UserMapper&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+</code></pre></div><p>3、我们去进行测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetAllUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="c1">//本质上利用了jvm的动态代理机制
+</span><span class="c1"></span>   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">users</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">getAllUser</span><span class="o">();</span>
+   <span class="k">for</span> <span class="o">(</span><span class="n">User</span> <span class="n">user</span> <span class="o">:</span> <span class="n">users</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+  <span class="o">}</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>4、利用Debug查看本质</p>
+<p><img src="/images/Mybatis7.png" alt="图片"></p>
+<p>5、本质上利用了jvm的动态代理机制</p>
+<p><img src="/images/Mybatis6.png" alt="图片"></p>
+<p>6、Mybatis详细的执行流程</p>
+<p><img src="/images/Mybatis5.png" alt="图片"></p>
+<h2 id="注解增删改">注解增删改</h2>
+<p>改造MybatisUtils工具类的getSession( ) 方法，重载实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">  <span class="c1">//获取SqlSession连接
+</span><span class="c1"></span>  <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">getSession</span><span class="o">(){</span>
+      <span class="k">return</span> <span class="n">getSession</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> <span class="c1">//事务自动提交
+</span><span class="c1"></span>  <span class="o">}</span>
+ 
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">SqlSession</span> <span class="nf">getSession</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">flag</span><span class="o">){</span>
+      <span class="k">return</span> <span class="n">sqlSessionFactory</span><span class="o">.</span><span class="na">openSession</span><span class="o">(</span><span class="n">flag</span><span class="o">);</span>
+  <span class="o">}</span>
+</code></pre></div><p>【注意】确保实体类和数据库字段对应</p>
+<p><strong>查询：</strong></p>
+<p>1、编写接口方法注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//根据id查询用户
+</span><span class="c1"></span><span class="nd">@Select</span><span class="o">(</span><span class="s">&#34;select * from user where id = #{id}&#34;</span><span class="o">)</span>
+<span class="n">User</span> <span class="nf">selectUserById</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>2、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectUserById</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">selectUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>新增：</strong></p>
+<p>1、编写接口方法注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//添加一个用户
+</span><span class="c1"></span><span class="nd">@Insert</span><span class="o">(</span><span class="s">&#34;insert into user (id,name,pwd) values (#{id},#{name},#{pwd})&#34;</span><span class="o">)</span>
+<span class="kt">int</span> <span class="nf">addUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</code></pre></div><p>2、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testAddUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">6</span><span class="o">,</span> <span class="s">&#34;秦疆&#34;</span><span class="o">,</span> <span class="s">&#34;123456&#34;</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">addUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>修改：</strong></p>
+<p>1、编写接口方法注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//修改一个用户
+</span><span class="c1"></span><span class="nd">@Update</span><span class="o">(</span><span class="s">&#34;update user set name=#{name},pwd=#{pwd} where id = #{id}&#34;</span><span class="o">)</span>
+<span class="kt">int</span> <span class="nf">updateUser</span><span class="o">(</span><span class="n">User</span> <span class="n">user</span><span class="o">);</span>
+</code></pre></div><p>2、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdateUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">(</span><span class="n">6</span><span class="o">,</span> <span class="s">&#34;秦疆&#34;</span><span class="o">,</span> <span class="s">&#34;zxcvbn&#34;</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">updateUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>删除：</strong></p>
+<p>1、编写接口方法注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//根据id删除用
+</span><span class="c1"></span><span class="nd">@Delete</span><span class="o">(</span><span class="s">&#34;delete from user where id = #{id}&#34;</span><span class="o">)</span>
+<span class="kt">int</span> <span class="nf">deleteUser</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>2、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testDeleteUser</span><span class="o">()</span> <span class="o">{</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">mapper</span><span class="o">.</span><span class="na">deleteUser</span><span class="o">(</span><span class="n">6</span><span class="o">);</span>
+   
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>【注意点：增删改一定记得对事务的处理】</p>
+<h2 id="关于param">关于@Param</h2>
+<p>@Param注解用于给方法参数起一个名字。以下是总结的使用原则：</p>
+<ul>
+<li>在方法只接受一个参数的情况下，可以不使用@Param。</li>
+<li>在方法接受多个参数的情况下，建议一定要使用@Param注解给参数命名。</li>
+<li>如果参数是 JavaBean ， 则不能使用@Param。</li>
+<li>不使用@Param注解时，参数只能有一个，并且是Javabean。</li>
+</ul>
+<h2 id="与的区别">#与$的区别</h2>
+<ul>
+<li>
+<p>#{} 的作用主要是替换预编译语句(PrepareStatement)中的占位符? 【推荐使用】</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="o">#</span><span class="err">{</span><span class="n">name</span><span class="err">}</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="o">?</span><span class="p">);</span>
+</code></pre></div></li>
+<li>
+<p>${} 的作用是直接进行字符串替换</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;${name}&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">user</span> <span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;kuangshen&#39;</span><span class="p">);</span>
+</code></pre></div></li>
+</ul>
+<blockquote>
+<p>使用注解和配置文件协同开发，才是MyBatis的最佳实践！</p>
+</blockquote>
+<h2 id="多对一的处理">多对一的处理</h2>
+<p>多对一的理解：</p>
+<ul>
+<li>多个学生对应一个老师</li>
+<li>如果对于学生这边，就是一个多对一的现象，即从学生这边关联一个老师！</li>
+</ul>
+<p>数据库设计</p>
+<p><img src="/images/Mybatis4.png" alt="图片"></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">teacher</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">INNODB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">teacher</span><span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;秦老师&#39;</span><span class="p">);</span>
+
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">INT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="o">`</span><span class="n">tid</span><span class="o">`</span> <span class="nb">INT</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+<span class="k">KEY</span> <span class="o">`</span><span class="n">fktid</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">),</span>
+<span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">fktid</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">teacher</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">INNODB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
+
+
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;小明&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;小红&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;小张&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;小李&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">student</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span> <span class="o">`</span><span class="n">tid</span><span class="o">`</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;小王&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">);</span>
+</code></pre></div><h2 id="搭建测试环境">搭建测试环境</h2>
+<p>1、IDEA安装Lombok插件</p>
+<p>2、引入Maven依赖</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.projectlombok/lombok --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+ <span class="nt">&lt;groupId&gt;</span>org.projectlombok<span class="nt">&lt;/groupId&gt;</span>
+ <span class="nt">&lt;artifactId&gt;</span>lombok<span class="nt">&lt;/artifactId&gt;</span>
+ <span class="nt">&lt;version&gt;</span>1.16.10<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>3、在代码中增加注解</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Data</span> <span class="c1">//GET,SET,ToString，有参，无参构造
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Teacher</span> <span class="o">{</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+   <span class="c1">//多个学生可以是同一个老师，即多对一
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">Teacher</span> <span class="n">teacher</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>4、编写实体类对应的Mapper接口 【两个】</p>
+<ul>
+<li><strong>无论有没有需求，都应该写上，以备后来之需！</strong></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">StudentMapper</span> <span class="o">{</span>
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">TeacherMapper</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div><p>5、编写Mapper接口对应的 mapper.xml配置文件 【两个】</p>
+<ul>
+<li><strong>无论有没有需求，都应该写上，以备后来之需！</strong></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.StudentMapper&#34;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
+<span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.TeacherMapper&#34;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><blockquote>
+<p>按查询嵌套处理</p>
+</blockquote>
+<p>1、给StudentMapper接口增加方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//获取所有学生及对应老师的信息
+</span><span class="c1"></span><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="nf">getStudents</span><span class="o">();</span>
+</code></pre></div><p>2、编写对应的Mapper文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.StudentMapper&#34;</span><span class="nt">&gt;</span>
+
+   <span class="c">&lt;!--
+</span><span class="c">   需求：获取所有学生及对应老师的信息
+</span><span class="c">   思路：
+</span><span class="c">       1. 获取所有学生的信息
+</span><span class="c">       2. 根据获取的学生信息的老师ID-&gt;获取该老师的信息
+</span><span class="c">       3. 思考问题，这样学生的结果集中应该包含老师，该如何处理呢，数据库中我们一般使用关联查询？
+</span><span class="c">           1. 做一个结果集映射：StudentTeacher
+</span><span class="c">           2. StudentTeacher结果集的类型为 Student
+</span><span class="c">           3. 学生中老师的属性为teacher，对应数据库中为tid。
+</span><span class="c">              多个 [1,...）学生关联一个老师=&gt; 一对一，一对多
+</span><span class="c">           4. 查看官网找到：association – 一个复杂类型的关联；使用它来处理关联查询
+</span><span class="c">   --&gt;</span>
+   <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getStudents&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;StudentTeacher&#34;</span><span class="nt">&gt;</span>
+    select * from student
+   <span class="nt">&lt;/select&gt;</span>
+   <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;StudentTeacher&#34;</span> <span class="na">type=</span><span class="s">&#34;Student&#34;</span><span class="nt">&gt;</span>
+       <span class="c">&lt;!--association关联属性 property属性名 javaType属性类型 column在多的一方的表中的列名--&gt;</span>
+       <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&#34;teacher&#34;</span>  <span class="na">column=</span><span class="s">&#34;tid&#34;</span> <span class="na">javaType=</span><span class="s">&#34;Teacher&#34;</span> <span class="na">select=</span><span class="s">&#34;getTeacher&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/resultMap&gt;</span>
+   <span class="c">&lt;!--
+</span><span class="c">   这里传递过来的id，只有一个属性的时候，下面可以写任何值
+</span><span class="c">   association中column多参数配置：
+</span><span class="c">       column=&#34;{key=value,key=value}&#34;
+</span><span class="c">       其实就是键值对的形式，key是传给下个sql的取值名称，value是片段一中sql查询的字段名。
+</span><span class="c">   --&gt;</span>
+   <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getTeacher&#34;</span> <span class="na">resultType=</span><span class="s">&#34;teacher&#34;</span><span class="nt">&gt;</span>
+      select * from teacher where id = #{id}
+   <span class="nt">&lt;/select&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><p>3、编写完毕去Mybatis配置文件中，注册Mapper！</p>
+<p>4、注意点说明：</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;StudentTeacher&#34;</span> <span class="na">type=</span><span class="s">&#34;Student&#34;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!--association关联属性 property属性名 javaType属性类型 column在多的一方的表中的列名--&gt;</span>
+   <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&#34;teacher&#34;</span>  <span class="na">column=</span><span class="s">&#34;{id=tid,name=tid}&#34;</span> <span class="na">javaType=</span><span class="s">&#34;Teacher&#34;</span> <span class="na">select=</span><span class="s">&#34;getTeacher&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+<span class="c">&lt;!--
+</span><span class="c">这里传递过来的id，只有一个属性的时候，下面可以写任何值
+</span><span class="c">association中column多参数配置：
+</span><span class="c">   column=&#34;{key=value,key=value}&#34;
+</span><span class="c">   其实就是键值对的形式，key是传给下个sql的取值名称，value是片段一中sql查询的字段名。
+</span><span class="c">--&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getTeacher&#34;</span> <span class="na">resultType=</span><span class="s">&#34;teacher&#34;</span><span class="nt">&gt;</span>
+  select * from teacher where id = #{id} and name = #{name}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>5、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetStudents</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">StudentMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">StudentMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">students</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">getStudents</span><span class="o">();</span>
+
+   <span class="k">for</span> <span class="o">(</span><span class="n">Student</span> <span class="n">student</span> <span class="o">:</span> <span class="n">students</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span>
+               <span class="s">&#34;学生名:&#34;</span><span class="o">+</span> <span class="n">student</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span>
+                       <span class="o">+</span><span class="s">&#34;\t老师:&#34;</span><span class="o">+</span><span class="n">student</span><span class="o">.</span><span class="na">getTeacher</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="按结果嵌套处理">按结果嵌套处理</h2>
+<p>除了上面这种方式，还有其他思路吗？</p>
+<p>我们还可以按照结果进行嵌套处理；</p>
+<p>1、接口方法编写</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="nf">getStudents2</span><span class="o">();</span>
+</code></pre></div><p>2、编写对应的mapper文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--
+</span><span class="c">按查询结果嵌套处理
+</span><span class="c">思路：
+</span><span class="c">   1. 直接查询出结果，进行结果集的映射
+</span><span class="c">--&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getStudents2&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;StudentTeacher2&#34;</span> <span class="nt">&gt;</span>
+  select s.id sid, s.name sname , t.name tname
+  from student s,teacher t
+  where s.tid = t.id
+<span class="nt">&lt;/select&gt;</span>
+
+<span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;StudentTeacher2&#34;</span> <span class="na">type=</span><span class="s">&#34;Student&#34;</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;id</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span> <span class="na">column=</span><span class="s">&#34;sid&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;name&#34;</span> <span class="na">column=</span><span class="s">&#34;sname&#34;</span><span class="nt">/&gt;</span>
+   <span class="c">&lt;!--关联对象property 关联对象在Student实体类中的属性--&gt;</span>
+   <span class="nt">&lt;association</span> <span class="na">property=</span><span class="s">&#34;teacher&#34;</span> <span class="na">javaType=</span><span class="s">&#34;Teacher&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;name&#34;</span> <span class="na">column=</span><span class="s">&#34;tname&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;/association&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+</code></pre></div><p>3、去mybatis-config文件中注入【此处应该处理过了】</p>
+<p>4、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetStudents2</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">StudentMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">StudentMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">students</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">getStudents2</span><span class="o">();</span>
+
+   <span class="k">for</span> <span class="o">(</span><span class="n">Student</span> <span class="n">student</span> <span class="o">:</span> <span class="n">students</span><span class="o">){</span>
+       <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span>
+               <span class="s">&#34;学生名:&#34;</span><span class="o">+</span> <span class="n">student</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span>
+                       <span class="o">+</span><span class="s">&#34;\t老师:&#34;</span><span class="o">+</span><span class="n">student</span><span class="o">.</span><span class="na">getTeacher</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="小结">小结</h2>
+<p>按照查询进行嵌套处理就像SQL中的子查询</p>
+<p>按照结果进行嵌套处理就像SQL中的联表查询</p>
+<p>一对多处理</p>
+<h2 id="一对多的处理">一对多的处理</h2>
+<p>一对多的理解：</p>
+<ul>
+<li>一个老师拥有多个学生</li>
+<li>如果对于老师这边，就是一个一对多的现象，即从一个老师下面拥有一群学生（集合）！</li>
+</ul>
+<blockquote>
+<p>实体类编写</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">tid</span><span class="o">;</span>
+<span class="o">}</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Teacher</span> <span class="o">{</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">id</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+   <span class="c1">//一个老师多个学生
+</span><span class="c1"></span>   <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Student</span><span class="o">&gt;</span> <span class="n">students</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div><p>&hellip;.. 和之前一样，搭建测试的环境！</p>
+<h2 id="按结果嵌套处理-1">按结果嵌套处理</h2>
+<p>1、TeacherMapper接口编写方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//获取指定老师，及老师下的所有学生
+</span><span class="c1"></span><span class="kd">public</span> <span class="n">Teacher</span> <span class="nf">getTeacher</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>2、编写接口对应的Mapper配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.TeacherMapper&#34;</span><span class="nt">&gt;</span>
+
+   <span class="c">&lt;!--
+</span><span class="c">   思路:
+</span><span class="c">       1. 从学生表和老师表中查出学生id，学生姓名，老师姓名
+</span><span class="c">       2. 对查询出来的操作做结果集映射
+</span><span class="c">           1. 集合的话，使用collection！
+</span><span class="c">               JavaType和ofType都是用来指定对象类型的
+</span><span class="c">               JavaType是用来指定pojo中属性的类型
+</span><span class="c">               ofType指定的是映射到list集合属性中pojo的类型。
+</span><span class="c">   --&gt;</span>
+   <span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getTeacher&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;TeacherStudent&#34;</span><span class="nt">&gt;</span>
+      select s.id sid, s.name sname , t.name tname, t.id tid
+      from student s,teacher t
+      where s.tid = t.id and t.id=#{id}
+   <span class="nt">&lt;/select&gt;</span>
+
+   <span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;TeacherStudent&#34;</span> <span class="na">type=</span><span class="s">&#34;Teacher&#34;</span><span class="nt">&gt;</span>
+       <span class="nt">&lt;result</span>  <span class="na">property=</span><span class="s">&#34;name&#34;</span> <span class="na">column=</span><span class="s">&#34;tname&#34;</span><span class="nt">/&gt;</span>
+       <span class="nt">&lt;collection</span> <span class="na">property=</span><span class="s">&#34;students&#34;</span> <span class="na">ofType=</span><span class="s">&#34;Student&#34;</span><span class="nt">&gt;</span>
+           <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;id&#34;</span> <span class="na">column=</span><span class="s">&#34;sid&#34;</span> <span class="nt">/&gt;</span>
+           <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;name&#34;</span> <span class="na">column=</span><span class="s">&#34;sname&#34;</span> <span class="nt">/&gt;</span>
+           <span class="nt">&lt;result</span> <span class="na">property=</span><span class="s">&#34;tid&#34;</span> <span class="na">column=</span><span class="s">&#34;tid&#34;</span> <span class="nt">/&gt;</span>
+       <span class="nt">&lt;/collection&gt;</span>
+   <span class="nt">&lt;/resultMap&gt;</span>
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><p>3、将Mapper文件注册到MyBatis-config文件中</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;mappers&gt;</span>
+   <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/TeacherMapper.xml&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+</code></pre></div><p>4、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetTeacher</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">TeacherMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">TeacherMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">Teacher</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">getTeacher</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">teacher</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">teacher</span><span class="o">.</span><span class="na">getStudents</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="按查询嵌套处理">按查询嵌套处理</h2>
+<p>1、TeacherMapper接口编写方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Teacher</span> <span class="nf">getTeacher2</span><span class="o">(</span><span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>2、编写接口对应的Mapper配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getTeacher2&#34;</span> <span class="na">resultMap=</span><span class="s">&#34;TeacherStudent2&#34;</span><span class="nt">&gt;</span>
+select * from teacher where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+<span class="nt">&lt;resultMap</span> <span class="na">id=</span><span class="s">&#34;TeacherStudent2&#34;</span> <span class="na">type=</span><span class="s">&#34;Teacher&#34;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!--column是一对多的外键 , 写的是一的主键的列名--&gt;</span>
+   <span class="nt">&lt;collection</span> <span class="na">property=</span><span class="s">&#34;students&#34;</span> <span class="na">javaType=</span><span class="s">&#34;ArrayList&#34;</span> <span class="na">ofType=</span><span class="s">&#34;Student&#34;</span> <span class="na">column=</span><span class="s">&#34;id&#34;</span> <span class="na">select=</span><span class="s">&#34;getStudentByTeacherId&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/resultMap&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;getStudentByTeacherId&#34;</span> <span class="na">resultType=</span><span class="s">&#34;Student&#34;</span><span class="nt">&gt;</span>
+  select * from student where tid = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>3、将Mapper文件注册到MyBatis-config文件中</p>
+<p>4、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testGetTeacher2</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">TeacherMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">TeacherMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">Teacher</span> <span class="n">teacher</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">getTeacher2</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">teacher</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">teacher</span><span class="o">.</span><span class="na">getStudents</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="小结-1">小结</h2>
+<p>1、关联-association</p>
+<p>2、集合-collection</p>
+<p>3、所以association是用于一对一和多对一，而collection是用于一对多的关系</p>
+<p>4、JavaType和ofType都是用来指定对象类型的</p>
+<ul>
+<li>JavaType是用来指定pojo中属性的类型</li>
+<li>ofType指定的是映射到list集合属性中pojo的类型。</li>
+</ul>
+<p><strong>注意说明：</strong></p>
+<p>1、保证SQL的可读性，尽量通俗易懂</p>
+<p>2、根据实际要求，尽量编写性能更高的SQL语句</p>
+<p>3、注意属性名和字段不一致的问题</p>
+<p>4、注意一对多和多对一 中：字段和属性对应的问题</p>
+<p>5、尽量使用Log4j，通过日志来查看自己的错误</p>
+<h2 id="介绍">介绍</h2>
+<p>什么是动态SQL：<strong>动态SQL指的是根据不同的查询条件 , 生成不同的Sql语句.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-D" data-lang="D"><span class="n">官网描述</span><span class="err">：</span>
+<span class="n">MyBatis</span> <span class="n">的强大特性之一便是它的动态</span> <span class="n">SQL</span><span class="err">。</span><span class="n">如果你有使用</span> <span class="n">JDBC</span> <span class="n">或其它类似框架的经验</span><span class="err">，</span><span class="n">你就能体会到根据不同条件拼接</span> <span class="n">SQL</span> <span class="n">语句的痛苦</span><span class="err">。</span><span class="n">例如拼接时要确保不能忘记添加必要的空格</span><span class="err">，</span><span class="n">还要注意去掉列表最后一个列名的逗号</span><span class="err">。</span><span class="n">利用动态</span> <span class="n">SQL</span> <span class="n">这一特性可以彻底摆脱这种痛苦</span><span class="err">。</span>
+<span class="n">虽然在以前使用动态</span> <span class="n">SQL</span> <span class="n">并非一件易事</span><span class="err">，</span><span class="n">但正是</span> <span class="n">MyBatis</span> <span class="n">提供了可以被用在任意</span> <span class="n">SQL</span> <span class="n">映射语句中的强大的动态</span> <span class="n">SQL</span> <span class="n">语言得以改进这种情形</span><span class="err">。</span>
+<span class="n">动态</span> <span class="n">SQL</span> <span class="n">元素和</span> <span class="n">JSTL</span> <span class="n">或基于类似</span> <span class="n">XML</span> <span class="n">的文本处理器相似</span><span class="err">。</span><span class="n">在</span> <span class="n">MyBatis</span> <span class="n">之前的版本中</span><span class="err">，</span><span class="n">有很多元素需要花时间了解</span><span class="err">。</span><span class="n">MyBatis</span> <span class="mi">3</span> <span class="n">大大精简了元素种类</span><span class="err">，</span><span class="n">现在只需学习原来一半的元素便可</span><span class="err">。</span><span class="n">MyBatis</span> <span class="n">采用功能强大的基于</span> <span class="n">OGNL</span> <span class="n">的表达式来淘汰其它大部分元素</span><span class="err">。</span>
+
+  <span class="o">-------------------------------</span>
+  <span class="o">-</span> <span class="k">if</span>
+  <span class="o">-</span> <span class="n">choose</span> <span class="o">(</span><span class="n">when</span><span class="o">,</span> <span class="n">otherwise</span><span class="o">)</span>
+  <span class="o">-</span> <span class="n">trim</span> <span class="o">(</span><span class="n">where</span><span class="o">,</span> <span class="n">set</span><span class="o">)</span>
+  <span class="o">-</span> <span class="k">foreach</span>
+  <span class="o">-------------------------------</span>
+</code></pre></div><p>我们之前写的 SQL 语句都比较简单，如果有比较复杂的业务，我们需要写复杂的 SQL 语句，往往需要拼接，而拼接 SQL ，稍微不注意，由于引号，空格等缺失可能都会导致错误。</p>
+<p>那么怎么去解决这个问题呢？这就要使用 mybatis 动态SQL，通过 if, choose, when, otherwise, trim, where, set, foreach等标签，可组合成非常灵活的SQL语句，从而在提高 SQL 语句的准确性的同时，也大大提高了开发人员的效率。</p>
+<h2 id="搭建环境">搭建环境</h2>
+<p><strong>新建一个数据库表：blog</strong></p>
+<p>字段：id，title，author，create_time，views</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">blog</span><span class="o">`</span> <span class="p">(</span>
+<span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;博客id&#39;</span><span class="p">,</span>
+<span class="o">`</span><span class="n">title</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;博客标题&#39;</span><span class="p">,</span>
+<span class="o">`</span><span class="n">author</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;博客作者&#39;</span><span class="p">,</span>
+<span class="o">`</span><span class="n">create_time</span><span class="o">`</span> <span class="n">datetime</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;创建时间&#39;</span><span class="p">,</span>
+<span class="o">`</span><span class="n">views</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">COMMENT</span> <span class="s1">&#39;浏览量&#39;</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span>
+</code></pre></div><p>1、创建Mybatis基础工程</p>
+<p><img src="/images/Mybatis3.png" alt="图片"></p>
+<p>2、IDutil工具类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">IDUtil</span> <span class="o">{</span>
+
+   <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">genId</span><span class="o">(){</span>
+       <span class="k">return</span> <span class="n">UUID</span><span class="o">.</span><span class="na">randomUUID</span><span class="o">().</span><span class="na">toString</span><span class="o">().</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&#34;-&#34;</span><span class="o">,</span><span class="s">&#34;&#34;</span><span class="o">);</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div><p>3、实体类编写  【注意set方法作用】</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Blog</span> <span class="o">{</span>
+
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">title</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">String</span> <span class="n">author</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="n">Date</span> <span class="n">createTime</span><span class="o">;</span>
+   <span class="kd">private</span> <span class="kt">int</span> <span class="n">views</span><span class="o">;</span>
+   <span class="c1">//set，get....
+</span><span class="c1"></span><span class="o">}</span>
+</code></pre></div><p>4、编写Mapper接口及xml文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">public interface BlogMapper {
+}
+<span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE mapper
+</span><span class="cp">       PUBLIC &#34;-//mybatis.org//DTD Mapper 3.0//EN&#34;
+</span><span class="cp">       &#34;http://mybatis.org/dtd/mybatis-3-mapper.dtd&#34;&gt;</span>
+<span class="nt">&lt;mapper</span> <span class="na">namespace=</span><span class="s">&#34;com.kuang.mapper.BlogMapper&#34;</span><span class="nt">&gt;</span>
+
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><p>5、mybatis核心配置文件，下划线驼峰自动转换</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;settings&gt;</span>
+   <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;mapUnderscoreToCamelCase&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+   <span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;logImpl&#34;</span> <span class="na">value=</span><span class="s">&#34;STDOUT_LOGGING&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/settings&gt;</span>
+<span class="c">&lt;!--注册Mapper.xml--&gt;</span>
+<span class="nt">&lt;mappers&gt;</span>
+ <span class="nt">&lt;mapper</span> <span class="na">resource=</span><span class="s">&#34;mapper/BlogMapper.xml&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/mappers&gt;</span>
+</code></pre></div><p>6、插入初始数据</p>
+<p>编写接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//新增一个博客
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">addBlog</span><span class="o">(</span><span class="n">Blog</span> <span class="n">blog</span><span class="o">);</span>
+</code></pre></div><p>sql配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;insert</span> <span class="na">id=</span><span class="s">&#34;addBlog&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  insert into blog (id, title, author, create_time, views)
+  values (#{id},#{title},#{author},#{createTime},#{views});
+<span class="nt">&lt;/insert&gt;</span>
+</code></pre></div><p>初始化博客方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">addInitBlog</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">BlogMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">BlogMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">Blog</span> <span class="n">blog</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Blog</span><span class="o">();</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">IDUtil</span><span class="o">.</span><span class="na">genId</span><span class="o">());</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Mybatis如此简单&#34;</span><span class="o">);</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setAuthor</span><span class="o">(</span><span class="s">&#34;狂神说&#34;</span><span class="o">);</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setCreateTime</span><span class="o">(</span><span class="k">new</span> <span class="n">Date</span><span class="o">());</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setViews</span><span class="o">(</span><span class="n">9999</span><span class="o">);</span>
+
+   <span class="n">mapper</span><span class="o">.</span><span class="na">addBlog</span><span class="o">(</span><span class="n">blog</span><span class="o">);</span>
+
+   <span class="n">blog</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">IDUtil</span><span class="o">.</span><span class="na">genId</span><span class="o">());</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Java如此简单&#34;</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">addBlog</span><span class="o">(</span><span class="n">blog</span><span class="o">);</span>
+
+   <span class="n">blog</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">IDUtil</span><span class="o">.</span><span class="na">genId</span><span class="o">());</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;Spring如此简单&#34;</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">addBlog</span><span class="o">(</span><span class="n">blog</span><span class="o">);</span>
+
+   <span class="n">blog</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span><span class="n">IDUtil</span><span class="o">.</span><span class="na">genId</span><span class="o">());</span>
+   <span class="n">blog</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="s">&#34;微服务如此简单&#34;</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">addBlog</span><span class="o">(</span><span class="n">blog</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>初始化数据完毕！</p>
+<h2 id="if-语句">if 语句</h2>
+<p><strong>需求：根据作者名字和博客名字来查询博客！如果作者名字为空，那么只根据博客名字查询，反之，则根据作者名来查询</strong></p>
+<p>1、编写接口类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//需求1
+</span><span class="c1"></span><span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="nf">queryBlogIf</span><span class="o">(</span><span class="n">Map</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>2、编写SQL语句</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--需求1：
+</span><span class="c">根据作者名字和博客名字来查询博客！
+</span><span class="c">如果作者名字为空，那么只根据博客名字查询，反之，则根据作者名来查询
+</span><span class="c">select * from blog where title = #{title} and author = #{author}
+</span><span class="c">--&gt;</span>
+<span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryBlogIf&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  select * from blog where
+   <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;title != null&#34;</span><span class="nt">&gt;</span>
+      title = #{title}
+   <span class="nt">&lt;/if&gt;</span>
+   <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;author != null&#34;</span><span class="nt">&gt;</span>
+      and author = #{author}
+   <span class="nt">&lt;/if&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryBlogIf</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">BlogMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">BlogMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;title&#34;</span><span class="o">,</span><span class="s">&#34;Mybatis如此简单&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;author&#34;</span><span class="o">,</span><span class="s">&#34;狂神说&#34;</span><span class="o">);</span>
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="n">blogs</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryBlogIf</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">blogs</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>这样写我们可以看到，如果 author 等于 null，那么查询语句为 select * from user where title=#{title},但是如果title为空呢？那么查询语句为 select * from user where and author=#{author}，这是错误的 SQL 语句，如何解决呢？请看下面的 where 语句！</p>
+<h2 id="where">Where</h2>
+<p>修改上面的SQL语句；</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryBlogIf&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  select * from blog
+   <span class="nt">&lt;where&gt;</span>
+       <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;title != null&#34;</span><span class="nt">&gt;</span>
+          title = #{title}
+       <span class="nt">&lt;/if&gt;</span>
+       <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;author != null&#34;</span><span class="nt">&gt;</span>
+          and author = #{author}
+       <span class="nt">&lt;/if&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>这个“where”标签会知道如果它包含的标签中有返回值的话，它就插入一个‘where’。此外，如果标签返回的内容是以AND 或OR 开头的，则它会剔除掉。</p>
+<h2 id="set">Set</h2>
+<p>同理，上面的对于查询 SQL 语句包含 where 关键字，如果在进行更新操作的时候，含有 set 关键词，我们怎么处理呢？</p>
+<p>1、编写接口方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kt">int</span> <span class="nf">updateBlog</span><span class="o">(</span><span class="n">Map</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>2、sql配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!--注意set是用的逗号隔开--&gt;</span>
+<span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;updateBlog&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span><span class="nt">&gt;</span>
+  update blog
+     <span class="nt">&lt;set&gt;</span>
+         <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;title != null&#34;</span><span class="nt">&gt;</span>
+            title = #{title},
+         <span class="nt">&lt;/if&gt;</span>
+         <span class="nt">&lt;if</span> <span class="na">test=</span><span class="s">&#34;author != null&#34;</span><span class="nt">&gt;</span>
+            author = #{author}
+         <span class="nt">&lt;/if&gt;</span>
+     <span class="nt">&lt;/set&gt;</span>
+  where id = #{id};
+<span class="nt">&lt;/update&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testUpdateBlog</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">BlogMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">BlogMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">String</span><span class="o">&gt;();</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;title&#34;</span><span class="o">,</span><span class="s">&#34;动态SQL&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;author&#34;</span><span class="o">,</span><span class="s">&#34;秦疆&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span><span class="s">&#34;9d6a763f5e1347cebda43e2a32687a77&#34;</span><span class="o">);</span>
+
+   <span class="n">mapper</span><span class="o">.</span><span class="na">updateBlog</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><blockquote>
+<p>choose语句</p>
+</blockquote>
+<p>有时候，我们不想用到所有的查询条件，只想选择其中的一个，查询条件有一个满足即可，使用 choose 标签可以解决此类问题，类似于 Java 的 switch 语句</p>
+<p>1、编写接口方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="nf">queryBlogChoose</span><span class="o">(</span><span class="n">Map</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>2、sql配置文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryBlogChoose&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  select * from blog
+   <span class="nt">&lt;where&gt;</span>
+       <span class="nt">&lt;choose&gt;</span>
+           <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;title != null&#34;</span><span class="nt">&gt;</span>
+                title = #{title}
+           <span class="nt">&lt;/when&gt;</span>
+           <span class="nt">&lt;when</span> <span class="na">test=</span><span class="s">&#34;author != null&#34;</span><span class="nt">&gt;</span>
+              and author = #{author}
+           <span class="nt">&lt;/when&gt;</span>
+           <span class="nt">&lt;otherwise&gt;</span>
+              and views = #{views}
+           <span class="nt">&lt;/otherwise&gt;</span>
+       <span class="nt">&lt;/choose&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>3、测试类</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryBlogChoose</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">BlogMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">BlogMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;();</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;title&#34;</span><span class="o">,</span><span class="s">&#34;Java如此简单&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;author&#34;</span><span class="o">,</span><span class="s">&#34;狂神说&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;views&#34;</span><span class="o">,</span><span class="n">9999</span><span class="o">);</span>
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="n">blogs</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryBlogChoose</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">blogs</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="sql片段">SQL片段</h2>
+<p>有时候可能某个 sql 语句我们用的特别多，为了增加代码的重用性，简化代码，我们需要将这些代码抽取出来，然后使用时直接调用。</p>
+<p><strong>提取SQL片段：</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">&lt;</span><span class="k">sql</span> <span class="n">id</span><span class="o">=</span><span class="s2">&#34;if-title-author&#34;</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="k">if</span> <span class="n">test</span><span class="o">=</span><span class="s2">&#34;title != null&#34;</span><span class="o">&gt;</span>
+      <span class="n">title</span> <span class="o">=</span> <span class="o">#</span><span class="err">{</span><span class="n">title</span><span class="err">}</span>
+   <span class="o">&lt;/</span><span class="k">if</span><span class="o">&gt;</span>
+   <span class="o">&lt;</span><span class="k">if</span> <span class="n">test</span><span class="o">=</span><span class="s2">&#34;author != null&#34;</span><span class="o">&gt;</span>
+      <span class="k">and</span> <span class="n">author</span> <span class="o">=</span> <span class="o">#</span><span class="err">{</span><span class="n">author</span><span class="err">}</span>
+   <span class="o">&lt;/</span><span class="k">if</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="k">sql</span><span class="o">&gt;</span>
+</code></pre></div><p><strong>引用SQL片段：</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryBlogIf&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  select * from blog
+   <span class="nt">&lt;where&gt;</span>
+       <span class="c">&lt;!-- 引用 sql 片段，如果refid 指定的不在本文件中，那么需要在前面加上 namespace --&gt;</span>
+       <span class="nt">&lt;include</span> <span class="na">refid=</span><span class="s">&#34;if-title-author&#34;</span><span class="nt">&gt;&lt;/include&gt;</span>
+       <span class="c">&lt;!-- 在这里还可以引用其他的 sql 片段 --&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>注意：</p>
+<p>①、最好基于 单表来定义 sql 片段，提高片段的可重用性</p>
+<p>②、在 sql 片段中不要包括 where</p>
+<h2 id="foreach">Foreach</h2>
+<p>将数据库中前三个数据的id修改为1,2,3；</p>
+<p>需求：我们需要查询 blog 表中 id 分别为1,2,3的博客信息</p>
+<p>1、编写接口</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="nf">queryBlogForeach</span><span class="o">(</span><span class="n">Map</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>2、编写SQL语句</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryBlogForeach&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span> <span class="na">resultType=</span><span class="s">&#34;blog&#34;</span><span class="nt">&gt;</span>
+  select * from blog
+   <span class="nt">&lt;where&gt;</span>
+       <span class="c">&lt;!--
+</span><span class="c">       collection:指定输入对象中的集合属性
+</span><span class="c">       item:每次遍历生成的对象
+</span><span class="c">       open:开始遍历时的拼接字符串
+</span><span class="c">       close:结束时拼接的字符串
+</span><span class="c">       separator:遍历对象之间需要拼接的字符串
+</span><span class="c">       select * from blog where 1=1 and (id=1 or id=2 or id=3)
+</span><span class="c">     --&gt;</span>
+       <span class="nt">&lt;foreach</span> <span class="na">collection=</span><span class="s">&#34;ids&#34;</span>  <span class="na">item=</span><span class="s">&#34;id&#34;</span> <span class="na">open=</span><span class="s">&#34;and (&#34;</span> <span class="na">close=</span><span class="s">&#34;)&#34;</span> <span class="na">separator=</span><span class="s">&#34;or&#34;</span><span class="nt">&gt;</span>
+          id=#{id}
+       <span class="nt">&lt;/foreach&gt;</span>
+   <span class="nt">&lt;/where&gt;</span>
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>3、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryBlogForeach</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">BlogMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">BlogMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">HashMap</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">ids</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+   <span class="n">ids</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">ids</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+   <span class="n">ids</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">3</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;ids&#34;</span><span class="o">,</span><span class="n">ids</span><span class="o">);</span>
+
+   <span class="n">List</span><span class="o">&lt;</span><span class="n">Blog</span><span class="o">&gt;</span> <span class="n">blogs</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryBlogForeach</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">blogs</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>小结：其实动态 sql 语句的编写往往就是一个拼接的问题，为了保证拼接准确，我们最好首先要写原生的 sql 语句出来，然后在通过 mybatis 动态sql 对照着改，防止出错。多在实践中使用才是熟练掌握它的技巧。</p>
+<h2 id="简介">简介</h2>
+<p>1、什么是缓存 [ Cache ]？</p>
+<ul>
+<li>存在内存中的临时数据。</li>
+<li>将用户经常查询的数据放在缓存（内存）中，用户去查询数据就不用从磁盘上(关系型数据库数据文件)查询，从缓存中查询，从而提高查询效率，解决了高并发系统的性能问题。</li>
+</ul>
+<p>2、为什么使用缓存？</p>
+<ul>
+<li>减少和数据库的交互次数，减少系统开销，提高系统效率。</li>
+</ul>
+<p>3、什么样的数据能使用缓存？</p>
+<ul>
+<li>经常查询并且不经常改变的数据。</li>
+</ul>
+<h2 id="mybatis缓存">Mybatis缓存</h2>
+<ul>
+<li>
+<p>MyBatis包含一个非常强大的查询缓存特性，它可以非常方便地定制和配置缓存。缓存可以极大的提升查询效率。</p>
+</li>
+<li>
+<p>MyBatis系统中默认定义了两级缓存：<strong>一级缓存</strong>和<strong>二级缓存</strong></p>
+</li>
+<li>
+<ul>
+<li>默认情况下，只有一级缓存开启。（SqlSession级别的缓存，也称为本地缓存）</li>
+<li>二级缓存需要手动开启和配置，他是基于namespace级别的缓存。</li>
+<li>为了提高扩展性，MyBatis定义了缓存接口Cache。我们可以通过实现Cache接口来自定义二级缓存</li>
+</ul>
+</li>
+</ul>
+<h2 id="一级缓存">一级缓存</h2>
+<p>一级缓存也叫本地缓存：</p>
+<ul>
+<li>与数据库同一次会话期间查询到的数据会放在本地缓存中。</li>
+<li>以后如果需要获取相同的数据，直接从缓存中拿，没必须再去查询数据库；</li>
+</ul>
+<blockquote>
+<p>测试</p>
+</blockquote>
+<p>1、在mybatis中加入日志，方便测试结果</p>
+<p>2、编写接口方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//根据id查询用户
+</span><span class="c1"></span><span class="n">User</span> <span class="nf">queryUserById</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">)</span> <span class="kt">int</span> <span class="n">id</span><span class="o">);</span>
+</code></pre></div><p>3、接口对应的Mapper文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;select</span> <span class="na">id=</span><span class="s">&#34;queryUserById&#34;</span> <span class="na">resultType=</span><span class="s">&#34;user&#34;</span><span class="nt">&gt;</span>
+  select * from user where id = #{id}
+<span class="nt">&lt;/select&gt;</span>
+</code></pre></div><p>4、测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>5、结果分析</p>
+<p><img src="/images/Mybatis2.png" alt="图片"></p>
+<h2 id="一级缓存失效的四种情况">一级缓存失效的四种情况</h2>
+<p>一级缓存是SqlSession级别的缓存，是一直开启的，我们关闭不了它；</p>
+<p>一级缓存失效情况：没有使用到当前的一级缓存，效果就是，还需要再向数据库中发起一次查询请求！</p>
+<p>1、sqlSession不同</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">SqlSession</span> <span class="n">session2</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">UserMapper</span> <span class="n">mapper2</span> <span class="o">=</span> <span class="n">session2</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper2</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+   <span class="n">session2</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>观察结果：发现发送了两条SQL语句！</p>
+<p>结论：<strong>每个sqlSession中的缓存相互独立</strong></p>
+<p>2、sqlSession相同，查询条件不同</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">UserMapper</span> <span class="n">mapper2</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper2</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">2</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>观察结果：发现发送了两条SQL语句！很正常的理解</p>
+<p>结论：<strong>当前缓存中，不存在这个数据</strong></p>
+<p>3、sqlSession相同，两次查询之间执行了增删改操作！</p>
+<p>增加方法</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//修改用户
+</span><span class="c1"></span><span class="kt">int</span> <span class="nf">updateUser</span><span class="o">(</span><span class="n">Map</span> <span class="n">map</span><span class="o">);</span>
+</code></pre></div><p>编写SQL</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;update</span> <span class="na">id=</span><span class="s">&#34;updateUser&#34;</span> <span class="na">parameterType=</span><span class="s">&#34;map&#34;</span><span class="nt">&gt;</span>
+  update user set name = #{name} where id = #{id}
+<span class="nt">&lt;/update&gt;</span>
+</code></pre></div><p>测试</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+   <span class="n">HashMap</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;name&#34;</span><span class="o">,</span><span class="s">&#34;kuangshen&#34;</span><span class="o">);</span>
+   <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;id&#34;</span><span class="o">,</span><span class="n">4</span><span class="o">);</span>
+   <span class="n">mapper</span><span class="o">.</span><span class="na">updateUser</span><span class="o">(</span><span class="n">map</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>观察结果：查询在中间执行了增删改操作后，重新执行了</p>
+<p>结论：<strong>因为增删改操作可能会对当前数据产生影响</strong></p>
+<p>4、sqlSession相同，手动清除一级缓存</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">clearCache</span><span class="o">();</span><span class="c1">//手动清除缓存
+</span><span class="c1"></span>
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><p>一级缓存就是一个map</p>
+<h2 id="二级缓存">二级缓存</h2>
+<ul>
+<li>
+<p>二级缓存也叫全局缓存，一级缓存作用域太低了，所以诞生了二级缓存</p>
+</li>
+<li>
+<p>基于namespace级别的缓存，一个名称空间，对应一个二级缓存；</p>
+</li>
+<li>
+<p>工作机制</p>
+</li>
+<li>
+<ul>
+<li>一个会话查询一条数据，这个数据就会被放在当前会话的一级缓存中；</li>
+<li>如果当前会话关闭了，这个会话对应的一级缓存就没了；但是我们想要的是，会话关闭了，一级缓存中的数据被保存到二级缓存中；</li>
+<li>新的会话查询信息，就可以从二级缓存中获取内容；</li>
+<li>不同的mapper查出的数据会放在自己对应的缓存（map）中；</li>
+</ul>
+</li>
+</ul>
+<h2 id="使用步骤">使用步骤</h2>
+<p>1、开启全局缓存 【mybatis-config.xml】</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;setting</span> <span class="na">name=</span><span class="s">&#34;cacheEnabled&#34;</span> <span class="na">value=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+</code></pre></div><p>2、去每个mapper.xml中配置使用二级缓存，这个配置非常简单；【xxxMapper.xml】</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;cache/&gt;</span>
+
+官方示例=====&gt;查看官方文档
+<span class="nt">&lt;cache</span>
+ <span class="na">eviction=</span><span class="s">&#34;FIFO&#34;</span>
+ <span class="na">flushInterval=</span><span class="s">&#34;60000&#34;</span>
+ <span class="na">size=</span><span class="s">&#34;512&#34;</span>
+ <span class="na">readOnly=</span><span class="s">&#34;true&#34;</span><span class="nt">/&gt;</span>
+这个更高级的配置创建了一个 FIFO 缓存，每隔 60 秒刷新，最多可以存储结果对象或列表的 512 个引用，而且返回的对象被认为是只读的，因此对它们进行修改可能会在不同线程中的调用者产生冲突。
+</code></pre></div><p>3、代码测试</p>
+<ul>
+<li>所有的实体类先实现序列化接口</li>
+<li>测试代码</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testQueryUserById</span><span class="o">(){</span>
+   <span class="n">SqlSession</span> <span class="n">session</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+   <span class="n">SqlSession</span> <span class="n">session2</span> <span class="o">=</span> <span class="n">MybatisUtils</span><span class="o">.</span><span class="na">getSession</span><span class="o">();</span>
+
+   <span class="n">UserMapper</span> <span class="n">mapper</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+   <span class="n">UserMapper</span> <span class="n">mapper2</span> <span class="o">=</span> <span class="n">session2</span><span class="o">.</span><span class="na">getMapper</span><span class="o">(</span><span class="n">UserMapper</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+   <span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="n">mapper</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+   <span class="n">session</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+
+   <span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">mapper2</span><span class="o">.</span><span class="na">queryUserById</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user2</span><span class="o">);</span>
+   <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">user</span><span class="o">==</span><span class="n">user2</span><span class="o">);</span>
+
+   <span class="n">session2</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="结论">结论</h2>
+<ul>
+<li>只要开启了二级缓存，我们在同一个Mapper中的查询，可以在二级缓存中拿到数据</li>
+<li>查出的数据都会被默认先放在一级缓存中</li>
+<li>只有会话提交或者关闭以后，一级缓存中的数据才会转到二级缓存中</li>
+</ul>
+<h2 id="缓存原理图">缓存原理图</h2>
+<p><img src="/images/1.png" alt="图片"></p>
+<h2 id="ehcache">EhCache</h2>
+<p><img src="images/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1.png" alt="图片"></p>
+<p>第三方缓存实现&ndash;EhCache: 查看百度百科</p>
+<p>Ehcache是一种广泛使用的java分布式缓存，用于通用缓存；</p>
+<p>要在应用程序中使用Ehcache，需要引入依赖的jar包</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- https://mvnrepository.com/artifact/org.mybatis.caches/mybatis-ehcache --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+   <span class="nt">&lt;groupId&gt;</span>org.mybatis.caches<span class="nt">&lt;/groupId&gt;</span>
+   <span class="nt">&lt;artifactId&gt;</span>mybatis-ehcache<span class="nt">&lt;/artifactId&gt;</span>
+   <span class="nt">&lt;version&gt;</span>1.1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><p>在mapper.xml中使用对应的缓存即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;mapper</span> <span class="na">namespace =</span> <span class="s">“org.acme.FooMapper”</span> <span class="nt">&gt;</span>
+   <span class="nt">&lt;cache</span> <span class="na">type =</span> <span class="s">“org.mybatis.caches.ehcache.EhcacheCache”</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/mapper&gt;</span>
+</code></pre></div><p>编写ehcache.xml文件，如果在加载时未找到/ehcache.xml资源或出现问题，则将使用默认配置。</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span class="nt">&lt;ehcache</span> <span class="na">xmlns:xsi=</span><span class="s">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+        <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">&#34;http://ehcache.org/ehcache.xsd&#34;</span>
+        <span class="na">updateCheck=</span><span class="s">&#34;false&#34;</span><span class="nt">&gt;</span>
+   <span class="c">&lt;!--
+</span><span class="c">      diskStore：为缓存路径，ehcache分为内存和磁盘两级，此属性定义磁盘的缓存位置。参数解释如下：
+</span><span class="c">      user.home – 用户主目录
+</span><span class="c">      user.dir – 用户当前工作目录
+</span><span class="c">      java.io.tmpdir – 默认临时文件路径
+</span><span class="c">    --&gt;</span>
+   <span class="nt">&lt;diskStore</span> <span class="na">path=</span><span class="s">&#34;./tmpdir/Tmp_EhCache&#34;</span><span class="nt">/&gt;</span>
+   
+   <span class="nt">&lt;defaultCache</span>
+           <span class="na">eternal=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">maxElementsInMemory=</span><span class="s">&#34;10000&#34;</span>
+           <span class="na">overflowToDisk=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">diskPersistent=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">timeToIdleSeconds=</span><span class="s">&#34;1800&#34;</span>
+           <span class="na">timeToLiveSeconds=</span><span class="s">&#34;259200&#34;</span>
+           <span class="na">memoryStoreEvictionPolicy=</span><span class="s">&#34;LRU&#34;</span><span class="nt">/&gt;</span>
+
+   <span class="nt">&lt;cache</span>
+           <span class="na">name=</span><span class="s">&#34;cloud_user&#34;</span>
+           <span class="na">eternal=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">maxElementsInMemory=</span><span class="s">&#34;5000&#34;</span>
+           <span class="na">overflowToDisk=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">diskPersistent=</span><span class="s">&#34;false&#34;</span>
+           <span class="na">timeToIdleSeconds=</span><span class="s">&#34;1800&#34;</span>
+           <span class="na">timeToLiveSeconds=</span><span class="s">&#34;1800&#34;</span>
+           <span class="na">memoryStoreEvictionPolicy=</span><span class="s">&#34;LRU&#34;</span><span class="nt">/&gt;</span>
+   <span class="c">&lt;!--
+</span><span class="c">      defaultCache：默认缓存策略，当ehcache找不到定义的缓存时，则使用这个缓存策略。只能定义一个。
+</span><span class="c">    --&gt;</span>
+   <span class="c">&lt;!--
+</span><span class="c">     name:缓存名称。
+</span><span class="c">     maxElementsInMemory:缓存最大数目
+</span><span class="c">     maxElementsOnDisk：硬盘最大缓存个数。
+</span><span class="c">     eternal:对象是否永久有效，一但设置了，timeout将不起作用。
+</span><span class="c">     overflowToDisk:是否保存到磁盘，当系统当机时
+</span><span class="c">     timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。
+</span><span class="c">     timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。
+</span><span class="c">     diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.
+</span><span class="c">     diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。
+</span><span class="c">     diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。
+</span><span class="c">     memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。
+</span><span class="c">     clearOnFlush：内存数量最大时是否清除。
+</span><span class="c">     memoryStoreEvictionPolicy:可选策略有：LRU（最近最少使用，默认策略）、FIFO（先进先出）、LFU（最少访问次数）。
+</span><span class="c">     FIFO，first in first out，这个是大家最熟的，先进先出。
+</span><span class="c">     LFU， Less Frequently Used，就是上面例子中使用的策略，直白一点就是讲一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。
+</span><span class="c">     LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。
+</span><span class="c">  --&gt;</span>
+
+<span class="nt">&lt;/ehcache&gt;</span>
+</code></pre></div></div>
+        <div class="post-footer">
+            <div class="info">
+                
+                
+            </div>
+        </div>
+
+        
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/jquery.min.86b1e8f819ee2d9099a783e50b49dff24282545fc40773861f9126b921532e4c.js"
+        integrity="sha256-hrHo&#43;BnuLZCZp4PlC0nf8kKCVF/EB3OGH5EmuSFTLkw="
+        crossorigin="anonymous"></script>
+
+
+
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/bundle.min.0f9c74cb78f13d1f15f33daff4037c70354f98acfbb97a6f61708966675c3cae.js"
+        integrity="sha256-D5x0y3jxPR8V8z2v9AN8cDVPmKz7uXpvYXCJZmdcPK4="
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript"
+        src="https://yexiang43.github.io/js/medium-zoom.min.92f21c856129f84aeb719459b3e6ac621a3032fd7b180a18c04e1d12083f8aba.js"
+        integrity="sha256-kvIchWEp&#43;ErrcZRZs&#43;asYhowMv17GAoYwE4dEgg/iro="
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
